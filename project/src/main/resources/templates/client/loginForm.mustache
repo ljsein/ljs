@@ -1,0 +1,209 @@
+<!-- loginForm  -->
+<!-- 
+<script type="text/javascript" src="../js/memberScript.js?v=1"></script>
+   <div class="container"  align="Center">
+         <form action="/member/login" method="post" name="form2" >
+            <table class="table" style="width:300px">
+               <tbody align="center">
+               <tr>
+                  <td>아이디</td>
+                  <td><input type="text" name="id" ></td>
+               </tr>
+               <tr>
+                  <td>비밀번호</td>
+                  <td><input type="password" name="pwd" ></td>
+               </tr>
+               <tr>
+                  <td colspan="2">
+                     <input type="button" value="로그인" 
+                     onclick="inputCheck_login()" >
+                     <input type="button" value="회원가입">
+                  </td>
+               </tr>
+               </tbody>
+            </table>
+         </form>
+         </div>
+   <br> -->
+<html lang="ko">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<title>윙크 : 로그인</title>
+<style>
+  body {
+    font-family: 'Open Sans', sans-serif;
+
+  }
+   *{
+    box-sizing: border-box; /*전체에 박스사이징*/
+    outline: none; /*focus 했을때 테두리 나오게 */
+}
+  .body1 {
+    background-image: url('/image/logo_background.png');
+    background-position: center;
+  }
+  
+  .login-container {
+    background-image: url('/image/background.jpg');
+    width: 400px;
+    padding: 50px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    margin: 100px auto;
+  }
+  .login-button, .signup-button {
+    background-color: #B40431;
+    width: 295px; 
+    height: 50px;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .login-button:hover, .signup-button:hover {
+    background-image: url('/image/background.jpg');
+  }
+
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+  }
+  .member-footer div a:after{
+    content:'|';
+    font-size: 10px;
+    color:#bbb;
+    margin-right: 5px;
+    margin-left: 7px;
+    /*살짝 내려가 있기 때문에 위로 올려주기 위해 transform 사용하기*/
+    display: inline-block;
+    transform: translateY(-1px);
+
+}
+.member-footer div a:last-child:after{
+    display: none;
+}
+.member-footer a:hover {
+   color: blue;
+   text-decoration : underline;
+}
+.login-container input[type=button] {
+    -webkit-mask-image: linear-gradient(45deg,#000 25%,rgba(0,0,0,.2) 50%,#000 75%);
+    mask-image: linear-gradient(45deg,#000 25%,rgba(0,0,0,.2) 50%,#000 75%);
+    -webkit-mask-size: 800%;
+    mask-size: 800%;
+    -webkit-mask-position: 0;
+    mask-position: 0;
+}
+
+.login-container input[type=button]:hover {
+    transition: mask-position 2s ease,-webkit-mask-position 2s ease;
+    -webkit-mask-position: 120%;
+    mask-position: 120%;
+    opacity: 1;
+}
+
+.kakao-img{
+   transition: all 0.5s linear; 
+   background-size: cover;   
+   background-position: center;
+   width: 293px; 
+   height: 50px;
+   background-image: url("../image/login3off.png");
+   padding-right: 3px;
+   margin: 6px;
+}
+.kakao-img:hover{
+   background-image: url("../image/login3on.png");
+    opacity : 1;
+}
+  .hero{
+    width: 100%;
+    min-height: 100vh;
+    background-image: url(../image/logo_background.png);
+    background-position: center;
+    background-size: cover;
+    padding: 10px 10%;
+    overflow: hidden;
+    position: relative;
+}
+
+</style>
+<script type="text/javascript" src="../js/memberScript.js?v=1"></script>
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script src="../js/signup.js"></script>
+<body class="body1">
+
+<div class="hero">
+{{>layouts/header}}
+   <form action="/client/login" method="post" name="form2">
+   <div class="back-ground">
+      <div class="login-container">
+         <h2 class="text-white text-2xl mb-4" align="center">Login</h2>
+         <input type="text" class="input-field"  name="client_id" placeholder="id"
+            onkeyup="enterkey()">
+         <input type="password" class="input-field" name="client_pwd" placeholder="Password"
+            onkeyup="enterkey()">
+         
+        <input type="button" class="login-button w-full" style="background-color: #B40431;" value="로그인" onclick="inputCheck_login()">
+                    
+         <a href="/client/writeForm" class="login-button w-full text-center flex justify-center items-center" style="display: inline-block; text-align: center; text-decoration: none;">회원가입</a>
+         
+   <div class="auth-icons-container" style="display: flex; justify-content: center; 
+            align-items: center; flex-direction: column;">
+       <a href="javascript:kakaoLogin();" class="kakao-img"></a>
+       <div style="height: 30px;">
+       <div id="naver_id_login" class="naver-btn"></div>
+       </div>
+   </div>      
+        </div>
+   </div>   
+   </form>
+   </div>
+   {{>layouts/footer}}
+</body>
+   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+   <script>
+         window.Kakao.init("2fcf85ca1255c43a9c740e92604a293c");
+         
+         function kakaoLogin() {
+            window.Kakao.Auth.login({
+               scope:'profile_nickname, profile_image, account_email',
+               success: function(authObj) {
+                  console.log(authObj);
+                  window.Kakao.API.request({
+                     url:'/v2/user/me',
+                     success: res => {
+                        const kakao_account = res.kakao_account;
+                        console.log(kakao_account);
+                     }
+                  });
+                  
+               }
+            });
+         }
+   </script>
+<script type="text/javascript">
+function enterkey() {
+   if (window.event.keyCode == 13) {
+      inputCheck_login();
+    }
+}
+</script>
+  <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript">
+     var naver_id_login = new naver_id_login("BfRrrljqaH6D6ote5wQ4", "http://localhost:8080/main/mainIndex");
+     var state = naver_id_login.getUniqState();
+     naver_id_login.setButton("green", 4,50);
+     naver_id_login.setDomain("http://localhost:8080/");
+     naver_id_login.setState(state);
+     naver_id_login.setPopup();
+     naver_id_login.init_naver_id_login();
+  </script>
+</html>

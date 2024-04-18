@@ -1,0 +1,107 @@
+<style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+.hero{
+    width: 100%;
+    min-height: 100vh;
+    background-image: url(../image/logo_background.png);
+    background-position: center;
+    background-size: cover;
+    padding: 10px 10%;
+    overflow: hidden;
+    position: relative;
+}
+nav{
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo{
+    width: 140px;
+}
+nav ul li{
+    display: inline-block;
+    list-style: none;
+    margin: 10px 15px;
+}
+nav ul li a{
+    text-decoration: none;
+    color: #333;
+    font-weight: 400;
+}
+.login-btn{
+    text-decoration: none;
+    color: #333;
+    margin-right: 15px;
+    font-weight: 400;
+}
+.btn{
+    display: inline-block;
+    text-decoration: none;
+    padding: 14px 40px;
+    color: #fff;
+    background-image: linear-gradient(45deg, #df4881, #c430d7);
+    font-size: 14px;
+    border-radius: 30px;
+    border-top-right-radius: 0;
+    transition: 0.5s;
+}
+.content{
+    margin-top: 10%;
+    max-width: 600px;
+}
+.content h1{
+    font-size: 70px;
+    color: #222;
+}
+.content p{
+    margin: 10px 0 30px;
+    color: #333;
+    animation-delay: 0.5s;
+}
+.content .btn{
+    padding: 15px 80px;
+    font-size: 16px;
+    animation-delay: 1s;
+}
+.btn:hover{
+    border-top-right-radius: 30px;
+}
+@keyframes moveup{
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+</style>
+	  <header class="bg-white shadow-md">
+      <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+         <a href="/main/mainIndex" class="text-gray-800 text-xl font-bold hover:text-gray-700" >
+            <img alt="이미지" src="../image/logo.png" 
+                width="85" height="100" class="rounded-full"></a>
+         <ul>
+				<li><a href="/employee/aboutUs">About Us</a></li>
+				<li><a href="/employee/manual">이용 매뉴얼</a></li>
+				<li><a href="/employee/employeeList">데이트신청</a></li>
+				<li><a href="/board/freeBoardList">자유게시판</a></li>
+			</ul>
+         {{#memName}}
+         <div id="loggedInContent">
+            <h4>
+               '환영합니다, {{memName}}'님!'
+             </h4>
+               <a href="/client/logout" class="btn">로그아웃</a>
+         </div>
+         {{/memName}} {{^memName}}
+         <div id="loginForm">
+            <a href="/client/loginForm" class="btn login-btn">로그인</a> 
+            <a href="/client/writeForm" class="btn" id="showSignUp1">회원가입</a>
+         </div>
+         {{/memName}}
+         </header>
+</nav>

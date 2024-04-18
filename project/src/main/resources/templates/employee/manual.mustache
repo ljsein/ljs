@@ -1,0 +1,186 @@
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>윙크~ 만남의 시작</title>
+    <link rel="icon" type="image/png" href="../image/logo.png"> 
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+.hero{
+    width: 100%;
+    min-height: 100vh;
+    background-image: url(../image/logo_background.png);
+    background-position: center;
+    background-size: cover;
+    padding: 10px 10%;
+    overflow: hidden;
+    position: relative;
+}
+nav{
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo{
+    width: 140px;
+}
+nav ul li{
+    display: inline-block;
+    list-style: none;
+    margin: 10px 15px;
+}
+nav ul li a{
+    text-decoration: none;
+    color: #333;
+    font-weight: 400;
+}
+.login-btn{
+    text-decoration: none;
+    color: #333;
+    margin-right: 15px;
+    font-weight: 400;
+}
+.btn{
+    display: inline-block;
+    text-decoration: none;
+    padding: 14px 40px;
+    color: #fff;
+    background-image: linear-gradient(45deg, #df4881, #c430d7);
+    font-size: 14px;
+    border-radius: 30px;
+    border-top-right-radius: 0;
+    transition: 0.5s;
+}
+.content{
+    margin-top: 10%;
+    max-width: 600px;
+}
+.content h1{
+    font-size: 70px;
+    color: #222;
+}
+.content p{
+    margin: 10px 0 30px;
+    color: #333;
+    animation-delay: 0.5s;
+}
+.content .btn{
+    padding: 15px 80px;
+    font-size: 16px;
+    animation-delay: 1s;
+}
+.btn:hover{
+    border-top-right-radius: 30px;
+}
+.feature-img{
+    width: 450px;
+    height:650px;
+    position: absolute;
+    bottom: 0;
+    right: 10%;
+}
+.feature-img.anim{
+    animation-delay: 1.5s;
+}
+.anim{
+    opacity: 0;
+    transform: translateY(30px);
+    animation: moveup 0.5s linear forwards;
+}
+@keyframes moveup{
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+</style>
+
+
+</head>
+<body class="bg-gray-100">
+   <div class="hero">
+
+  
+    <header class="bg-white shadow-md">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+              <a href="/main/mainIndex" class="text-gray-800 text-xl font-bold hover:text-gray-700" >
+            <img alt="이미지" src="../image/logo.png" 
+                width="85" height="100" class="rounded-full"></a>
+            
+            <div class="flex space-x-4">
+                <ul><a href="/employee/aboutUs">About Us</a></ul>&nbsp &nbsp &nbsp
+                <ul><a href="/employee/manual">이용 매뉴얼</a></ul>&nbsp &nbsp &nbsp
+                <ul><a href="/board/freeBoardList">자유게시판</a></ul>
+            </div>
+        </nav>
+    </header>
+
+   
+    <main class="container mx-auto px-6 mt-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+           
+            <div class="lg:col-span-2">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <div class="mb-4 bg-gray-200 rounded-lg" style="height: 500px;">
+                    <img src="../image/KakaoTalk_20240207_155611909.png" alt="Description of image" class="h-full w-full object-cover rounded-lg">
+                    </div> 
+                    <h2 class="text-2xl font-bold text-gray-700 mb-3">예약방법</h2>
+                    <p class="text-gray-600">- 좌측 상단에 위치하고 있는 로고를 클릭해 홈페이지로 이동하고 "예약하기" 버튼을 눌러서 원하는 데이트 상대를 선택해 날짜화 시간을 선택해주세요!<br><br>
+                    – 대행 및 서비스의 종류, 지역 및 거리, 메이트 별로 비용이 상이하오니 비용은 대표 번호로 문의해주시면 상담 후 안내 드리도록 하겠습니다.<br><br>
+                    – 대행은 최소신청시간 3시간입니다. (즉, 최소발생비용이 있습니다) <br><br>
+                    – 서울/부산 외 다른 지역은 거리에 따라 교통비와 출장료가 별도 발생합니다. <br><br>
+                    – 대행 서비스의 경우 밤 10시 50분 이후 종료시 서비스 할증으로 비용이 3만원이 추가되니 유의 부탁드립니다.</p><br><br>
+                                         <h2 class="text-2xl font-bold text-gray-700 mb-3">예약 변경 및 취소 정보</h2>
+                              <p class="text-gray-600">- 예약 내용의 변경이나 취소를 희망하시는 경우는, 신속하게 데이트 예정의 캐스트와 사무국에 연락해 주세요. <br><br>
+                              - 연락이 없는 경우는 예약분의 요금의 전액을 청구하겠습니다. <br><br>
+                              - 5 일 전 ~ 전날까지의 취소의 경우, 「지명료 + 출장료의 50 %」를, 데이트 당일 <br><br>
+                              - (데이트 예약 일시의 24 시간 이내)의 취소의 경우는, 「지명료 + 출장료의 100 % '를 취소 수수료로 지불합니다.<br><br>
+                              ※캔슬은 캐스트가 아니라 사무국까지의 제의해 주신 날에 기준이 됩니다.<br><br>
+                              ★그 외 캔슬에 관한 주의 사항은 『캔슬』 페이지 에서 확인해 주십시오.<br><br>
+                                【내용 변경】<br><br>
+                              - 데이트 예약 내용의 변경은 캐스트의 승낙을 얻고 있으면 가능합니다.<br><br>
+                              - 데이트 당일(데이트 예약 일시의 24시간 이내)에 손님의 사정에 의해 지명 시간이 단축했을 경우는, 예약된 시간분의 요금을 지불해 주십니다.<br><br>
+                              - 데이트 예약일의 변경의 경우는, 데이트 변경 가능 일정은 「당초의 예약일보다 30일간」, 데이트 변경 협의 기간은 「당초의 예약일보다 7일간」이라고 하고 있습니다.<br><br>
+                              - 그 외 내용 변경에 관한 주의사항은 『예약 내용 변경』 페이지 에서 확인해 주십시오.<br><br>
+                              </p>
+                              <h2 class="text-2xl font-bold text-gray-700 mb-3">직전 예약에 대해</h2>
+                              <p class="text-gray-600"> - 캐스트 대기형 서비스가 아닙니다.<br><br>
+                              - 그 때문에, 전날 당일 등 직전의 신청도 받아들이고 있습니다만, <br><br>
+                              - 희망의 캐스트의 스케줄에 빈 공간이 없는 경우는, 대응할 수 없는 경우가 있는 것을 양해 바랍니다.<br><br>
+                              </p>
+                </div>
+            </div>
+            
+            <aside class="lg:col-span-1">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold text-gray-700 mb-3">예약 및 문의</h3>
+                    <p class="text-gray-600 mb-4">고객센터: 010-7777-1111</p>
+                    <h3 class="text-xl font-bold text-gray-700 mb-3">예약시 유의사항</h3>
+                    <p class="text-gray-600">- 대행의 경우 100% 건전대행이라 스킨쉽은 불가합니다. 스킨쉽시 대행을 중단 할 수 있으며, 전체 비용은 환불되지 않습니다.<br><br>
+                                        - 사전협의 없이 예약시간을 30분 이상 넘길경우 예약은 취소되며, 예약금은 환불되지 않습니다.<br><br>
+                                        - 반대로 사전연락없이 약속된 장소와 시간에 직원이 30분 이상 나타나지 않으면 예약은 취소 할 수 있으며, 예약금은 환불 됩니다.<br><br>
+                                        - 메이트에게 불쾌감을 주는 언행/성희롱/성추행시 대행을 중단되며, 전체 비용은 환불되지 않습니다.<br><br><br>
+                                        건전하고 건강한 대행은 언제든 환영입니다.<br><br>
+                                        불법적이고 불건전한 대행요청은 불가합니다.
+
+                                        </p>
+                </div>
+            </aside>
+         
+           
+            
+        </div>
+    </main>
+
+    
+</div>
+</body>
+</html>

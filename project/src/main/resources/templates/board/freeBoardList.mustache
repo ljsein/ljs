@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<head>
+<style>
+paging {
+   color: black;
+   text-decoration: none;
+}
+
+.currentPaging {
+   color: pink;
+   text-decoration: underline;
+}
+
+#subjectA:link {
+   color: black;
+   text-decoration: none;
+}
+
+#subjectA:visited {
+   color: black;
+   text-decoration: none;
+}
+
+#subjectA:hover {
+   color: red;
+   text-decoration: underline;
+}
+
+#subjectA:active {
+   color: black;
+   text-decoration: none;
+}
+
+body {
+   background-image: url(../image/logo_background.png);
+   background-position: center;
+   min-height: 100vh;
+   background-size: cover;
+}
+
+.list_ver2 {
+   width: 1540px;
+   padding: 10px 10%;
+   overflow: hidden;
+   position: relative;
+}
+
+keyframes moveup { 100%{
+   opacity: 1;
+   transform: translateY(0px);
+}
+}
+.image {
+   white-space: nowrap;
+}
+.free{
+   font-size: 40px;
+
+   margin-bottom: 30px;
+   font-family: fantasy;
+   color : white;
+    -webkit-text-stroke: 2px pink;
+     text-shadow: 4px 4px 8px pink;
+}
+
+.paging {color: blue; text-decoration: none;}
+.currentPaging {color: red; text-decoration: underline;}
+
+#subjectA:link {color:black; text-decoration: none;}
+#subjectA:visited {color:black; text-decoration: none;}
+#subjectA:hover {color:red; text-decoration: underline;}
+#subjectA:active {color:black; text-decoration: none;}
+
+nav {
+   padding: 10px 10;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.logo {
+   width: 140px;
+}
+
+nav ul li {
+   display: inline-block;
+   list-style: none;
+   margin: 10px 15px;
+}
+
+nav ul li a {
+   text-decoration: none;
+   color: #333;
+   font-weight: 400;
+}
+
+.login-btn {
+   text-decoration: none;
+   color: #333;
+   margin-right: 15px;
+   font-weight: 400;
+}
+
+.list_ver2 {
+   width: 1680px;
+   min-height: 100vh;
+   background-image: url(/image/logo_background.png);
+   background-position: center;
+   background-size: cover;
+   padding: 10px 10%;
+   overflow: hidden;
+   position: relative;
+}
+
+.btn {
+   display: inline-block;
+   text-decoration: none;
+   padding: 14px 40px;
+   color: pink;
+   background-image: linear-gradient(45deg, #df4881, #c430d7);
+   font-size: 14px;
+   border-radius: 30px;
+   border-top-right-radius: 0;
+   transition: 0.5s;
+}
+
+.btn:hover {
+   border-top-right-radius: 30px;
+}
+
+
+keyframes moveup { 100%{
+   opacity: 1;
+   transform: translateY(0px);
+}
+
+}
+a:hover {
+   color: pink;
+}
+.form-control1 {
+   display: inline;
+   width: 49.9%;
+   padding: .375rem .75rem;
+   font-size: 1rem;
+   font-weight: 400;
+   line-height: 1.5;
+   color: var(--bs-body-color);
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   background-color: var(--bs-body-bg);
+   background-clip: padding-box;
+   border: var(--bs-border-width) solid var(--bs-border-color);
+   border-radius: var(--bs-border-radius);
+   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+.colHit1 {
+    width: 50px;
+    right: 0;
+}
+.colDate1 {
+    width: 200px;
+    right: 91px;
+}
+.hero{
+    width: 100%;
+    min-height: 100vh;
+    background-image: url(../image/logo_background.png);
+    background-position: center;
+    background-size: cover;
+    padding: 10px 10%;
+    overflow: hidden;
+    position: relative;
+}
+</style>
+
+<script>
+   function isLogin(board_seq) {
+      if({{is_login}}) {
+         location.href = "/board/freeBoardView?board_seq=" + board_seq + "&pg={{pg}}"
+      } else {
+         alert("로그인을 먼저 해주세요.")
+         location.href="/client/loginForm"
+      }
+   }
+   
+   function search() {
+      var keyword = document.getElementById("keyword").value;
+      
+      if(!keyword){
+         alert("검색어를 입력하세요.");
+         keyword.focus();
+         return false;
+      }
+      
+      if(confirm("검색할까요?")) {
+         location.href="freeBoardList?keyword=" + keyword + "&pg={{pg}}"
+      }
+      return false;
+   }
+   
+</script>
+<title>자유게시판 | wink</title>
+<link rel="shortcut icon" href="/image/logo.png" />
+<link type="text/css" rel="stylesheet" href="//static.musinsa.com/mfile_outsrc/css/module/forum.css?v=9.217664" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+</head>
+<body>
+         	<div class="hero">
+            {{>layouts/header}}
+						<div class="container">
+                        <div class="row">
+                        <div class="list_content" style="padding: 40px; width: 1500px;">
+                           <div class="contents"><div class="free" >
+                     <img alt="" style="width: 80px; height: 30px; " src="../image/board_logo.png" class='image'>> 자유게시판</div></div>
+							<div class="row">
+							 <div class="col-xl-3"  align="center">
+                        	</div>
+							 <div class="col-xl-4"  align="center">
+                        	</div>
+                           <div class="col-xl-5" align="right">
+ 
+                              {{#memId}}  
+                               <form name="/board/freeBoardList">                                                         
+                               <input type="text" name="keyword" size="10" class="form-control1" id="keyword" placeholder="글 제목을 입력해주세요" required onkeypress="search()">
+                               <input type="button" class="btn" value="검색" onclick="search()">
+                             </form>                                                       
+                              {{/memId}}
+                         </div> 
+                         </div>  
+                           <div class="row">
+                           <ul class="ul-col">
+                              <li class="col" style="background-image: url('/image/background.jpg');">
+                                 <span class="colName">게시판 번호</span> 
+                                 <span class="colSbj">제목</span> 
+                                 <span class="colNic">작성자</span> 
+                                 <span class="colDate1">등록일</span> 
+                                 <span class="colHit1">조회</span>
+                              </li>
+                              {{#list}}
+                              <li class="col col-list ">
+                              <span class="colSbj "> 
+                              <span class="colName">{{board_seq}}</span> 
+                                    <a href="/mz/community-free/view/883700" class="thumImg"></a> 
+                                    <a href="#" onclick="isLogin({{board_seq}})" alien="center">{{board_title}}</a>
+                                    <br>
+                              </span> 
+                                 <span class="colNic">{{board_author}}</span> 
+                                 <span class="colDate1">{{board_date}}</span>
+                                 <span class="colHit1">{{hit}}</span>
+                               </li> 
+                              {{/list}}
+                           </ul>   
+                        </div>
+                        <div class="content-wrapper forum">
+                           <div>
+                              <div align="center">
+                                 {{#previousPage}} 
+                                    {{#keyword}}
+                                    [<a class="paging" href="freeBoardList?pg={{previousPage}}&keyword={{keyword}}">이전</a>]
+                                    {{/keyword}}
+                                    {{^keyword}}
+                                    [<a class="paging" href="freeBoardList?pg={{previousPage}}">이전</a>]
+                                    {{/keyword}}
+                                 {{/previousPage}} 
+                                 {{#pageList}} 
+                                    {{#current}}
+                                       {{#keyword}} 
+                                             [<a class="currentPaging" href="freeBoardList?pg={{page}}&keyword={{keyword}}">{{page}}</a>]
+                                       {{/keyword}}
+                                       {{^keyword}}
+                                             [<a class="currentPaging" href="freeBoardList?pg={{page}}">{{page}}</a>]
+                                       {{/keyword}}
+                                    {{/current}}
+                                     
+                                    {{^current}}
+                                       {{#keyword}} 
+                                             [<a class="paging" href="freeBoardList?pg={{page}}&keyword={{keyword}}">{{page}}</a>] 
+                                       {{/keyword}}
+                                       {{^keyword}}
+                                             [<a class="paging" href="freeBoardList?pg={{page}}">{{page}}</a>]
+                                       {{/keyword}}
+                                    {{/current}}
+                                 {{/pageList}} 
+                                 {{#nextPage}}
+                                    {{#keyword}} 
+                                       [<a class="paging" href="freeBoardList?pg={{nextPage}}&keyword={{keyword}}">다음</a>]
+                                    {{/keyword}} 
+                                    {{^keyword}}
+                                       [<a class="paging" href="freeBoardList?pg={{nextPage}}">다음</a>]
+                                    {{/keyword}}
+                                 {{/nextPage}}
+                              </div>
+                           </div>
+                        </div>
+                
+          </div>
+          </div>
+            {{#is_login}} 
+                     <a href="/board/freeBoardWriteForm" class="btn">글쓰기</a>                     
+                  {{/is_login}}
+                  {{#keyword}}
+                      <a href="/board/freeBoardList" class="btn">목록</a>
+                  {{/keyword}}
+                     <a href="/main/mainIndex" class="btn">메인화면</a>
+         
+         </div>
+              
+         </div>
+{{>layouts/footer}}    
+         </body>
+         </html>

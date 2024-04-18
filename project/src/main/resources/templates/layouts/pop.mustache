@@ -1,0 +1,120 @@
+   
+   <style>
+        .divpop {
+        position: absolute;
+        z-index: 1; /* Below the form */
+        width: 280px;
+        height: 500px;
+        border: 1px solid black;
+         /* Path to your image */
+        background-size: cover; /* Cover ensures that the entire divpop is filled */
+        background-position: center; /* Center the image within the divpop */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+       #divpop1 {
+       
+       background-image: url(../flieUpload/{{event1.event_imagecode}});
+       }
+       
+       #divpop2 {
+       
+       background-image: url(../flieUpload/{{event2.event_imagecode}});
+       }
+
+        .divpop.left {
+            left: 10px; /* Adjust as needed */
+            top: 130px;
+        }
+        .divpop.right {
+            right: 30px; /* Adjust as needed */
+            top: 130px;
+        }
+   </style>
+   
+     <div id="divpop1" class="divpop left">    
+        
+        <div class="title_area"></div>
+        <div class="button_area">    
+            <a href='#' onclick="javascript:closeWin(1);"><b>[닫기]</b></a>
+        </div>
+    </div>
+    <div id="divpop2" class="divpop right">    
+        
+        <div class="title_area"></div>
+        <div class="button_area">
+            <a href='#' onclick="javascript:closeWin(2);"><b>[닫기]</b></a>
+        </div>
+    </div>
+   <script>
+    function checkBoardWrite() {
+        var frm = document.form1;
+
+        
+        var content = tinymce.get("mytextarea").getContent();
+
+        if (!frm.board_title.value) {
+            alert("제목을 입력하세요.");
+            frm.board_title.focus();
+            return false;
+        }
+
+        
+        if (!content) {
+            alert("내용을 입력하세요.");
+            
+            tinymce.get("mytextarea").focus();
+            return false;
+        }
+
+        // If both checks pass, proceed with the form submission
+        frm.submit();
+    }
+
+        tinymce.init({
+            selector: '#mytextarea'
+        });
+
+        function setCookie(name, value, expiredays) {
+            var todayDate = new Date();
+            todayDate.setDate(todayDate.getDate() + expiredays);
+            document.cookie = name + '=' + escape(value) + '; path=/; expires=' + todayDate.toGMTString() + ';';
+        }
+
+        function getCookie(name) {
+            var obj = name + "="; 
+            var x = 0;
+            while (x <= document.cookie.length) {
+                var y = (x + obj.length);
+                if (document.cookie.substring(x, y) == obj) {
+                    if ((endOfCookie = document.cookie.indexOf(";", y)) == -1) 
+                        endOfCookie = document.cookie.length;
+                    return unescape(document.cookie.substring(y, endOfCookie)); 
+                }
+                x = document.cookie.indexOf(" ", x) + 1;
+                if (x == 0) break;
+            }
+            return "";
+        }
+
+        function closeWin(key) {
+            var checkboxId = "#todaycloseyn" + key; // Dynamically target the correct checkbox
+            if ($(checkboxId).prop("checked")) {
+                setCookie('divpop' + key, 'Y', 1);
+            }
+            $("#divpop" + key).hide();
+        }
+
+        $(function() {
+            // Check for both pop-ups based on their individual cookies
+            if (getCookie("divpop1") != "Y") {
+                $("#divpop1").show();
+            }
+            if (getCookie("divpop2") != "Y") {
+                $("#divpop2").show();
+            }
+        });
+    </script>

@@ -1,0 +1,12 @@
+{{>layouts/header}}
+
+<script>
+	if({{result}}) {
+		alert("회원정보가 수정되었습니다.");
+	} else {
+		alert("회원정보 수정 실패");
+	}
+	location.href="/main/mainIndex";
+</script>
+
+{{>layouts/footer}}

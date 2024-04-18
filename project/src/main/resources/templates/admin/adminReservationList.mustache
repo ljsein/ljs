@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+
+   <!-- title -->
+   <title>관리자예약/결제관리</title>
+
+   <!-- google font -->
+   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+   <!-- fontawesome -->
+   <link rel="stylesheet" href="../assets/css/all.min.css">
+   <!-- bootstrap -->
+   <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+   <!-- owl carousel -->
+   <link rel="stylesheet" href="../assets/css/owl.carousel.css">
+   <!-- magnific popup -->
+   <link rel="stylesheet" href="../assets/css/magnific-popup.css">
+   <!-- animate css -->
+   <link rel="stylesheet" href="../assets/css/animate.css">
+   <!-- mean menu css -->
+   <link rel="stylesheet" href="../assets/css/meanmenu.min.css">
+   <!-- main style -->
+   <link rel="stylesheet" href="../assets/css/main.css">
+   <!-- responsive -->
+   <link rel="stylesheet" href="../assets/css/responsive.css">
+
+   <!-- Custom styles for this page -->
+   <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+   <!-- Custom fonts for this template-->
+   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+   <!-- Custom styles for this template-->
+   <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+
+   
+   <!-- Custom styles for this page -->
+      <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+   <link href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css" rel="stylesheet">
+
+
+
+
+<style type="text/css">
+
+.form-control,.bootstrap-table-filter-control-goods_code,.search-input{
+background-color: #5a5c69;
+border: 1px solid #5a5c69;
+
+color: black;
+text-align: center;
+
+
+}
+.hero{
+    width: 100%;
+    min-height: 100vh;
+    background-image: url(../image/logo_background.png);
+    background-position: center;
+    background-size: cover;
+    padding: 10px 10%;
+    overflow: hidden;
+    position: relative;
+}
+</style>
+</head>
+<body>
+{{>layouts/adminheader}}
+
+<div class="hero">
+{{#adminId}}
+<div class="col-xl-4" style="margin:10px;"><button id="reservclick" class="btn">예약내역관리</button><button id="payclick" class="btn">결제내역관리</button></div>
+ 
+
+ <div class="card shadow mb-4 scollor">
+      <div class="card-body">
+         <div class="table-responsive text-center">
+         	<div id="reserv">
+			<table class="table table-layout: fixed" id="table" data-pagination="true" data-page-number="1" data-toggle="table" cellspacing="0" data-filter-control="true" data-show-search-clear-button="true"  data-sort-class="table-active" data-sortable="true">
+               <thead class="table-dark">
+						<span><h1>예약내역관리</h1></span>  
+                  <tr class="text-center">      
+                  	 <th width = "2%" data-field="reserv_seq"  data-filter-control="input" data-sortable="true">예약넘버</th>    
+                     <th width = "3%" data-field="client_id"  data-filter-control="input" data-sortable="true">회원아이디</th>     <!-- width 설정은 본인이 알아서 설정 -->           
+                     <th width = "3%" data-field="employee_id" data-filter-control="input" data-sortable="true">직원아이디</th>
+					 <th width = "30%" data-field="reserv_address"  data-filter-control="input" data-sortable="true">데이트장소</th>  
+					 <th width = "10%" data-field="reserv_date"  data-filter-control="input" data-sortable="true">예약날짜</th>     <!-- width 설정은 본인이 알아서 설정 -->           
+                     <th width = "10%" data-field="reserv_time1" data-filter-control="input" data-sortable="true">예약시간1</th>
+                     <th width = "10%" data-field="reserv_time2" data-filter-control="input" data-sortable="true">예약시간2</th>               
+                     <th width = "10%" data-field="reserv_time3" data-filter-control="input" data-sortable="true">예약시간3</th>
+                  	 <th width = "10%" data-field="reserv_price" data-filter-control="select" data-sortable="true">결제금액</th>
+                     <th width = "5%" data-field="reserv_statename" data-filter-control="select" data-sortable="true">예약상태</th>
+                  	 <th width = "5%" data-field="reserv_state" data-filter-control="select" data-sortable="true">예약관리</th>
+                  	 <th width = "5%" data-field="time_state1" data-filter-control="select" data-sortable="true">시간선택여부1</th>
+                  	 <th width = "5%" data-field="time_state2" data-filter-control="select" data-sortable="true">시간선택여부2</th>
+                  	 <th width = "5%" data-field="time_state3" data-filter-control="select" data-sortable="true">시간선택여부3</th>
+                  	 <th width = "5%" data-field="time_state4" data-filter-control="select" data-sortable="true">시간선택여부4</th>
+                  	 <th width = "5%" data-field="time_state5" data-filter-control="select" data-sortable="true">시간선택여부5</th>
+                  	 <th width = "5%" data-field="time_state6" data-filter-control="select" data-sortable="true">시간선택여부6</th>
+                  	 <th width = "5%" data-field="time_state7" data-filter-control="select" data-sortable="true">시간선택여부7</th>
+                  	 <th width = "5%" data-field="time_state8" data-filter-control="select" data-sortable="true">시간선택여부8</th>
+                 </tr>
+               </thead>
+               <tbody class="table-hover" >
+                  
+                   {{#totalList}}
+                     <tr class="text-left" >
+   						<td style="border-right: 1px solid white; text-align: center;">{{reserv_seq}}</td>
+                        <td style="border-right: 1px solid white; text-align: center;">{{client_id}}</td>
+                        <td style="border-right: 1px solid white; text-align: center;">{{employee_id}}</td>
+                        <td style="border-right: 1px solid white; text-align: center;">{{reserv_address}}</td>
+                        <td style="border-right: 1px solid white; text-align: center;">{{reserv_date}}</td>
+                        {{#reserv_time1}}<td style="border-right: 1px solid white; text-align: center;">{{reserv_time1}}</td>{{/reserv_time1}}
+                       	{{^reserv_time1}}<td style="border-right: 1px solid white; text-align: center;">예약시간없음</td>{{/reserv_time1}}
+                       	{{#reserv_time2}}<td style="border-right: 1px solid white; text-align: center;">{{reserv_time2}}</td>{{/reserv_time2}}
+                       	{{^reserv_time2}}<td style="border-right: 1px solid white; text-align: center;">예약시간없음</td>{{/reserv_time2}}
+                       	{{#reserv_time3}}<td style="border-right: 1px solid white; text-align: center;"> {{reserv_time3}}</td>{{/reserv_time3}}
+                       	{{^reserv_time3}}<td style="border-right: 1px solid white; text-align: center;">예약시간없음</td>{{/reserv_time3}}
+                      	<td style="border-right: 1px solid white; text-align: center;">{{reserv_price}}</td>
+                        <td id="reserv_statename{{reserv_seq}}" clistyle="border-right: 1px solid white; text-align: center;">                     
+						{{reserv_statename}}		
+                        </td>
+                        
+                        
+                        <td style="text-align: center;"> 
+                              <select name="reserv_state" id="reserv_stateop" onchange="mState(this.value,'{{reserv_seq}}')">
+                               	<option value="0" {{#reserv_state0}}selected {{/reserv_state0}}>예약취소</option>
+                             	<option value="1" {{#reserv_state1}}selected {{/reserv_state1}}>예약완료</option>
+                        	  	<option value="2" {{#reserv_state2}}selected {{/reserv_state2}}>예약진행완료</option>
+                        	  </select>                    
+                        </td>
+                        
+                       
+						<td style="text-align: center;"> 
+                              <select name="time_state1" id="time_stateop1" onchange="tState1(this.value,'{{employee_id}}','{{time_reservdate}}')">
+                               	<option value="0" {{^time_state1}}selected {{/time_state1}}>선택가능</option>
+                             	<option value="1" {{#time_state1}}selected {{/time_state1}}>선택불가</option>
+                        	  </select>                    
+                        </td>
+                        <td style="text-align: center;"> 
+                              <select name="time_state2" id="time_stateop2" onchange="tState2(this.value,'{{employee_id}}','{{time_reservdate}}')">
+                               	<option value="0" {{^time_state2}}selected {{/time_state2}}>선택가능</option>
+                             	<option value="1" {{#time_state2}}selected {{/time_state2}}>선택불가</option>
+                        	  </select>                    
+                        </td>
+                        <td style="text-align: center;"> 
+                              <select name="time_state3" id="time_stateop3" onchange="tState3(this.value,'{{employee_id}}','{{time_reservdate}}')">
+                               	<option value="0" {{^time_state3}}selected {{/time_state3}}>선택가능</option>
+                             	<option value="1" {{#time_state3}}selected {{/time_state3}}>선택불가</option>
+                        	  </select>                    
+                        </td>
+                        <td style="text-align: center;"> 
+                              <select name="time_state4" id="time_stateop4" onchange="tState4(this.value,'{{employee_id}}','{{time_reservdate}}')">
+                               	<option value="0" {{^time_state4}}selected {{/time_state4}}>선택가능</option>
+                             	<option value="1" {{#time_state4}}selected {{/time_state4}}>선택불가</option>
+                        	  </select>                    
+                        </td>
+                        <td style="text-align: center;"> 
+                              <select name="time_state5" id="time_stateop5" onchange="tState5(this.value,'{{employee_id}}','{{time_reservdate}}')">
+                               	<option value="0" {{^time_state5}}selected {{/time_state5}}>선택가능</option>
+                             	<option value="1" {{#time_state5}}selected {{/time_state5}}>선택불가</option>
+                        	  </select>                    
+                        </td>
+                        <td style="text-align: center;"> 
+                              <select name="time_state6" id="time_stateop6" onchange="tState6(this.value,'{{employee_id}}','{{time_reservdate}}')">
+                               	<option value="0" {{^time_state6}}selected {{/time_state6}}>선택가능</option>
+                             	<option value="1" {{#time_state6}}selected {{/time_state6}}>선택불가</option>
+                        	  </select>                    
+                        </td>
+                        <td style="text-align: center;"> 
+                              <select name="time_state7" id="time_stateop7" onchange="tState7(this.value,'{{employee_id}}','{{time_reservdate}}')">
+                               	<option value="0" {{^time_state7}}selected {{/time_state7}}>선택가능</option>
+                             	<option value="1" {{#time_state7}}selected {{/time_state7}}>선택불가</option>
+                        	  </select>                    
+                        </td>                        
+                        <td style="text-align: center;"> 
+                              <select name="time_state8" id="time_stateop8" onchange="tState8(this.value,'{{employee_id}}','{{time_reservdate}}')">
+                               	<option value="0" {{^time_state8}}selected {{/time_state8}}>선택가능</option>
+                             	<option value="1" {{#time_state8}}selected {{/time_state8}}>선택불가</option>
+                        	  </select>                    
+                        </td>    
+                                          
+                     {{/totalList}}
+ 					
+                     </tr>
+                     
+                 
+               </tbody>
+            </table>
+            </div>
+            <div id="pay">
+				<table class="table table-layout: fixed" id="table" width="100%" data-pagination="true" data-page-number="1" data-toggle="table" cellspacing="0" data-filter-control="true" data-show-search-clear-button="true"  data-sort-class="table-active" data-sortable="true">
+               		<thead class="table-dark">
+							<span><h1>결제내역관리</h1></span>  
+                  <tr class="text-center">
+                     <th width = "3%" data-field="pay_seq"  data-filter-control="input" data-sortable="true">결제넘버</th> 
+                     <th width = "3%" data-field="pay_clientid"  data-filter-control="input" data-sortable="true">회원아이디</th>     <!-- width 설정은 본인이 알아서 설정 -->           
+					 <th width = "10%" data-field="pay_date"  data-filter-control="input" data-sortable="true">결제날짜</th>     <!-- width 설정은 본인이 알아서 설정 -->           
+                     <th width = "10%" data-field="pay_price" data-filter-control="input" data-sortable="true">결제금액</th> 
+                 	 <th width = "10%" data-field="pay_statename" data-filter-control="input" data-sortable="true">결제여부</th>
+                </tr>
+               </thead>
+               <tbody class="table-hover" >
+                  {{#PayList}}
+                     <tr class="text-left" >
+                     	<td style="border-right: 1px solid white; text-align: center;">{{pay_seq}}</td>
+                        <td style="border-right: 1px solid white; text-align: center;">{{pay_clientid}}</td>
+                        <td style="border-right: 1px solid white; text-align: center;">{{pay_date}}</td>
+                        <td style="border-right: 1px solid white; text-align: center;">{{pay_price}}</td>
+                     	<td style="border-right: 1px solid white; text-align: center;">{{pay_statename}}</td>
+                     </tr>
+                  {{/PayList}}
+			</tbody>
+			</table>
+			</div>
+			</div>
+            </div>
+            </div>
+            {{/adminId}}
+            </div>
+
+           
+{{>layouts/footer}}
+
+</body>
+   <!-- jquery -->
+   <script src="../assets/js/jquery-1.11.3.min.js"></script>
+   <!-- bootstrap -->
+   <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+   <!-- count down -->
+   <script src="../assets/js/jquery.countdown.js"></script>
+   <!-- isotope -->
+   <script src="../assets/js/jquery.isotope-3.0.6.min.js"></script>
+   <!-- waypoints -->
+   <script src="../assets/js/waypoints.js"></script>
+   <!-- owl carousel -->
+   <script src="../assets/js/owl.carousel.min.js"></script>
+   <!-- magnific popup -->
+   <script src="../assets/js/jquery.magnific-popup.min.js"></script>
+   <!-- mean menu -->
+   <script src="../assets/js/jquery.meanmenu.min.js"></script>
+   <!-- sticker js -->
+   <script src="../assets/js/sticker.js"></script>
+   <!-- main js -->
+   <script src="../assets/js/main.js"></script>
+   <!-- Page level plugins -->
+   <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+   <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+   <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.js"></script>
+   <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
+<script>
+$("#reserv").show();
+$("#pay").hide();
+
+$("#payclick").click(function(){
+  $("#pay").show();
+  $("#reserv").hide();
+	
+	
+});
+$("#reservclick").click(function(){
+	  $("#pay").hide();
+	  $("#reserv").show();
+		
+});
+function mState(value,reserv_seq){
+        
+         var reserv_state = value;
+         
+			if(reserv_state == 0){
+	 			
+	            $("#reserv_statename"+reserv_seq).text("예약취소");
+	        	    
+	        
+	 		}else if(reserv_state == 1){
+	            $("#reserv_statename"+reserv_seq).text("예약완료");
+	            
+	         }else if(reserv_state == 2){
+	        	 $("#reserv_statename"+reserv_seq).text("예약진행완료");
+	        	 
+	         }
+      
+         $.ajax({
+            type : "get",
+            url : "/admin/adminReservationState",
+            data : { "reserv_seq" : reserv_seq, "reserv_state" : reserv_state},
+            success : function(result){
+
+            }
+         });
+      }   
+$(document).ready(function() {  // 해당 옵션별 정렬
+      $('#Table').bootstrapTable({
+      });
+     
+});
+</script>
+<script>
+function tState1(value,employee_id,time_reservdate){
+    
+    var time_state1 = value;
+    var time_employeeid = employee_id;
+
+	 alert(time_reservdate);         
+
+    $.ajax({
+       type : "get",
+       url : "/admin/adminTimeState1",
+       data : { "time_employeeid" : time_employeeid,"time_reservdate" : time_reservdate, "time_state1" : time_state1},
+       success : function(result){
+
+       }
+    });
+}
+function tState2(value,employee_id,time_reservdate){
+
+var time_state2 = value;
+var time_employeeid = employee_id;
+$.ajax({
+  type : "get",
+  url : "/admin/adminTimeState2",
+  data : { "time_employeeid" : time_employeeid,"time_reservdate" : time_reservdate, "time_state2" : time_state2},
+  success : function(result){
+
+  }
+});
+}
+function tState3(value,employee_id,time_reservdate){
+
+var time_state3 = value;
+var time_employeeid = employee_id;
+
+$.ajax({
+  type : "get",
+  url : "/admin/adminTimeState3",
+  data : { "time_employeeid" : time_employeeid,"time_reservdate" : time_reservdate, "time_state3" : time_state3},
+  success : function(result){
+
+  }
+});
+}
+function tState4(value,employee_id,time_reservdate){
+
+var time_state4 = value;
+var time_employeeid = employee_id;
+
+$.ajax({
+  type : "get",
+  url : "/admin/adminTimeState4",
+  data : { "time_employeeid" : time_employeeid,"time_reservdate" : time_reservdate, "time_state4" : time_state4},
+  success : function(result){
+
+  }
+});
+}
+function tState5(value,employee_id,time_reservdate){
+
+var time_state5 = value;
+var time_employeeid = employee_id;
+
+$.ajax({
+  type : "get",
+  url : "/admin/adminTimeState5",
+  data : { "time_employeeid" : time_employeeid,"time_reservdate" : time_reservdate, "time_state5" : time_state5},
+  success : function(result){
+
+  }
+});
+}
+function tState6(value,employee_id,time_reservdate){
+
+var time_state6 = value;
+var time_employeeid = employee_id;
+
+$.ajax({
+  type : "get",
+  url : "/admin/adminTimeState6",
+  data : { "time_employeeid" : time_employeeid,"time_reservdate" : time_reservdate, "time_state6" : time_state6},
+  success : function(result){
+
+  }
+});
+}
+function tState7(value,employee_id,time_reservdate){
+
+var time_state7 = value;
+var time_employeeid = employee_id;
+$.ajax({
+  type : "get",
+  url : "/admin/adminTimeState7",
+  data : { "time_employeeid" : time_employeeid,"time_reservdate" : time_reservdate, "time_state7" : time_state7},
+  success : function(result){
+
+  }
+});
+}
+function tState8(value,employee_id,time_reservdate){
+
+var time_state8 = value;
+var time_employeeid = employee_id;
+
+$.ajax({
+  type : "get",
+  url : "/admin/adminTimeState8",
+  data : { "time_employeeid" : time_employeeid,"time_reservdate" : time_reservdate, "time_state8" : time_state8},
+  success : function(result){
+
+  }
+});
+}
+
+</script>
+</html>

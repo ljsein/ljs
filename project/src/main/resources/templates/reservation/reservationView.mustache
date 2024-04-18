@@ -1,0 +1,45 @@
+{{>layouts/header}}
+
+<script type="text/javascript">
+	function confirm_del() {
+		if(confirm("삭제할까요?")) {
+			location.href="reservationDelete?seq={{seq}}&pg={{pg}}"
+		}
+	}
+	function confirm_update() {
+		if(confirm("수정할까요?")) {
+			location.href="reservationModifyForm?seq={{seq}}&pg={{pg}}"
+		}
+	}
+</script>
+
+{{#reservation}}
+<div class="container">
+	<table class="table" style="width: 600px; margin: auto;">
+		<tr class="table-primary" align="center">
+			<td colspan="3">
+				<font size="5">{{reservation.subject}}</font>
+			</td>
+		</tr>
+		<tr align="center">
+			<td width="150">글번호 : {{reservation.seq}}</td>
+			<td width="150">작성자 : {{reservation.name}}</td>
+			<td width="150">조회수 : {{reservation.hit}}</td>
+		</tr>
+		<tr>
+			<td colspan="3" height="200" valign="top">
+				<pre>{{reservation.content}}</pre>
+			</td>	
+		</tr>
+	</table>
+{{/reservation}}
+
+	<input type="button" value="목록" 
+			onclick="location.href='/reservation/reservationList?pg={{pg}}'">
+	{{#isMemId}}
+		<input type="button" value="글수정" onclick="confirm_update()">
+		<input type="button" value="글삭제" onclick="confirm_del()">
+	{{/isMemId}}
+</div>
+
+{{>layouts/footer}}

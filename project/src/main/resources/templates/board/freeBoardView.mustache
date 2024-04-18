@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Wink | 자유게시판</title>
+    
+    <link rel="stylesheet" type="text/css" href="https://lwi.nexon.com/css/cso/2018/layout.css">
+    <link rel="stylesheet" type="text/css" href="https://lwi.nexon.com/css/cso/2018/contents.css">
+        
+    <link rel="stylesheet" type="text/css" href="../css/boardView.css">
+    <!-- <link rel="stylesheet" type="text/css" href="https://lwi.nexon.com/css/cso/2018/base.css">  -->
+    <!-- scripts -->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+  
+    <!-- END Criteo 로더 파일 -->
+</head>
+<script>
+   function confirmDel(){
+      if(confirm("삭제하시겠습니까?")){
+         location.href="freeBoardDelete?board_seq={{board_seq}}&pg={{pg}}"
+      }
+   }
+</script>
+<style>
+*{
+margin: 0;
+padding: 0;
+
+}
+body {
+   background-image: url(../image/logo_background.png);
+   background-position: center;
+    background-size: cover;
+}
+.board_btn{
+    text-decoration: none;
+    color: #333;
+    margin-right: 15px;
+    font-weight: 400;
+}
+.free{
+   font-size: 40px;
+   margin-bottom: 20px;
+   font-family: fantasy;
+   color : white;
+    -webkit-text-stroke: 2px pink;
+     text-shadow: 4px 4px 8px pink;
+}
+.cate{
+  font-size: 60px;
+  text-shadow: 2px 2px 4px red;
+}
+.tit{
+  font-size: 60px;
+  text-shadow: 2px 2px 4px red;
+}
+.hero{
+    width: 100%;
+    min-height: 100vh;
+    background-image: url(../image/logo_background.png);
+    background-position: center;
+    background-size: cover;
+    padding: 10px 10%;
+    overflow: hidden;
+    position: relative;
+}
+</style>
+ <script type="text/javascript" src="../js/memberScript.js?v=1"></script>
+ <script>
+window.onload = function() {
+  var contentDiv = document.querySelector('.board_con.view');
+  if (contentDiv) {
+    contentDiv.innerHTML = contentDiv.textContent || contentDiv.innerText;
+  }
+}
+</script>
+<body>
+    <!-- skip -->
+        <!-- header -->
+<div class="hero">
+      {{>layouts/header}}
+<div id="container" class="full" >
+    <div class="contents">
+           <div class="free" >자유게시판</div>
+   </div>
+        <div class="inner">
+            <!-- 게시판 -->
+
+            {{#freeboard}}
+            <!-- 로그인 된 사용자만 버튼을 클릭할 수 있도록 구성 -->
+            <div class="wrap_board" width="800px">
+                <div class="title_area">
+                    <div class="board_cate">
+                        <span class="cate">자유게시판</span>
+                        <hr>
+                    </div>
+                    <div class="tit" >{{board_title}}</div>
+                    <hr>
+                    <span class="time"><em></em>{{board_date}}</span>
+                    <span class="hit"><em></em>조회 : <b>{{hit}}</b></span>
+                </div>
+                    <!-- 이전 다음글 -->
+                <div class="content_area" style="height: 20px;">
+                    <div class="board_tit">
+                        <span class="writer">
+                     <span>게시글 번호 : {{board_seq}}</span>                        
+                     {{board_author}}
+                        </span>
+                        <span class="family">회원님</span>
+                    </div>
+                  <div class="board_con view">
+                        {{board_content}}
+                    </div> 
+                    <div class="board_btn">
+                       <a href="/board/freeBoardList?pg={{pg}}"  class="btn">목록</a> 
+                    {{#board_seq}}
+                        <a onclick="confirmDel()" class="btn" >삭제</a>
+                     {{/board_seq}}
+                    </div>
+                    </div>
+                </div>
+                {{/freeboard}}
+            </div>
+            <!-- //게시판 -->
+        </div>
+    </div>
+        <!-- //REAL contetns -->
+        <!-- footer -->
+        {{>layouts/footer}}
+        <!-- //footer -->
+</body>
+</html>

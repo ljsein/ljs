@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="../image/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>윙크~ 만남의 시작</title>
+    <style>
+        nav ul li {
+            display: inline-block;
+            list-style: none;
+            margin: 10px 15px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 400;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url('/image/logo_background.png');
+            background-position: center;
+            background-size: cover;
+            position: relative;
+        }
+        .hero {
+
+            z-index: 2; /* Ensure it's above the pop-ups */
+            width: 100%;
+            max-width: 800px; /* Adjust based on your preference */
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin: 0 20px; /* Ensure some space between the pop-ups and the form */
+        }
+        .table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 15px; /* Spacing between rows */
+        }
+        .table th, .table td {
+            text-align: left;
+            padding: 10px;
+            background-color: #f8f8f8;
+            border-radius: 5px;
+        }
+        .table th {
+            background-color: #eaeaea; /* Slightly different color for header */
+        }
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 10px 30px;
+            color: #fff;
+            background-image: linear-gradient(45deg, #df4881, #c430d7);
+            font-size: 14px;
+            border-radius: 30px;
+            border: 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Space between buttons */
+            margin-top: 20px;
+        }
+        .divpop {
+        position: absolute;
+        z-index: 1; /* Below the form */
+        width: 280px;
+        height: 500px;
+        border: 1px solid black;
+         /* Path to your image */
+        background-size: cover; /* Cover ensures that the entire divpop is filled */
+        background-position: center; /* Center the image within the divpop */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+       #divpop1 {
+       
+       background-image: url(../image/event1.jpg);
+       }
+       
+       #divpop2 {
+       
+       background-image: url(../image/event2.jpg);
+       }
+
+        .divpop.left {
+            left: 10px; /* Adjust as needed */
+            top: 50px;
+        }
+        .divpop.right {
+            right: 10px; /* Adjust as needed */
+            top: 50px;
+        }
+        .title_area {
+            font-weight: bold;
+            text-align: center;
+            width: 100%;
+        }
+        .button_area {
+            text-align: center;
+        }
+        .divpop img {
+            max-width: 100%;
+            height: auto;
+        }
+          .hero1{
+    width: 100%;
+    min-height: 100vh;
+    background-image: url(../image/logo_background.png);
+    background-position: center;
+    background-size: cover;
+    padding: 10px 10%;
+    overflow: hidden;
+    position: relative;
+}
+    </style>
+<head>
+</head>
+ <div id="divpop1" class="divpop left">    
+         
+        <div class="title_area"></div>
+        <div class="button_area">    
+            <a href='#' onclick="javascript:closeWin(1);"><b>[닫기]</b></a>
+        </div>
+    </div>
+    <div id="divpop2" class="divpop right">    
+        
+        <div class="title_area"></div>
+        <div class="button_area">
+            <a href='#' onclick="javascript:closeWin(2);"><b>[닫기]</b></a>
+        </div>
+    </div>
+
+<body>
+
+    <div class="hero1">
+    {{>layouts/header}}
+ 
+    <div class="hero" >
+  	<div class="row">
+        <form action="/board/freeBoardWrite" method="post" name="form1">
+
+            <table class="table">
+                <tr>
+                    <th width="100" >제목</th>
+                    <td ><input type="text" name="board_title" style="width: 97%;"></td>
+                </tr>
+                <tr>
+                    <th >내용</th>
+                    <td ><textarea id="mytextarea" name="board_content" rows="10" cols="50" style="width: 100%;"></textarea></td>
+                </tr>
+            </table>
+            <div class="action-buttons">
+                <input type="button" class="btn" value="글등록" onclick="checkBoardWrite()">
+                <input type="reset" class="btn" value="다시작성">
+                <a href="/board/freeBoardList"  class="btn">목록</a> 
+            </div>
+        </form>
+        </div>
+    </div>
+    <br>
+   {{>layouts/footer}} 
+    </div>
+
+     
+</body>
+<script src="https://cdn.tiny.cloud/1/3pnd28hoxlnbyur57lgimh0iy5ognpcwfiu74bya4no5z9oi/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script>
+    function checkBoardWrite() {
+        var frm = document.form1;
+
+        
+        var content = tinymce.get("mytextarea").getContent();
+
+        if (!frm.board_title.value) {
+            alert("제목을 입력하세요.");
+            frm.board_title.focus();
+            return false;
+        }
+
+        
+        if (!content) {
+            alert("내용을 입력하세요.");
+            
+            tinymce.get("mytextarea").focus();
+            return false;
+        }
+
+        // If both checks pass, proceed with the form submission
+        frm.submit();
+    }
+
+        tinymce.init({
+            selector: '#mytextarea'
+        });
+
+        function setCookie(name, value, expiredays) {
+            var todayDate = new Date();
+            todayDate.setDate(todayDate.getDate() + expiredays);
+            document.cookie = name + '=' + escape(value) + '; path=/; expires=' + todayDate.toGMTString() + ';';
+        }
+
+        function getCookie(name) {
+            var obj = name + "="; 
+            var x = 0;
+            while (x <= document.cookie.length) {
+                var y = (x + obj.length);
+                if (document.cookie.substring(x, y) == obj) {
+                    if ((endOfCookie = document.cookie.indexOf(";", y)) == -1) 
+                        endOfCookie = document.cookie.length;
+                    return unescape(document.cookie.substring(y, endOfCookie)); 
+                }
+                x = document.cookie.indexOf(" ", x) + 1;
+                if (x == 0) break;
+            }
+            return "";
+        }
+
+        function closeWin(key) {
+            var checkboxId = "#todaycloseyn" + key; 
+            if ($(checkboxId).prop("checked")) {
+                setCookie('divpop' + key, 'Y', 1);
+            }
+            $("#divpop" + key).hide();
+        }
+
+        $(function() {
+            
+            if (getCookie("divpop1") != "Y") {
+                $("#divpop1").show();
+            }
+            if (getCookie("divpop2") != "Y") {
+                $("#divpop2").show();
+            }
+        });
+    </script>
+</html>

@@ -1,0 +1,26 @@
+
+<script>
+	function checkIdClose() {
+		// opener : 현재 브라우저의 부모 브라우저를 관리하는 내장 객체
+		opener.form1.client_id.value = "{{client_id}}";
+		window.close();
+		//opener.form1.pwd.focus();
+	}
+</script>
+
+{{#result}}
+	{{client_id}}는 사용중입니다.<br><br>
+	<form action="checkId" method="get">
+		아이디 <input type="text" name="client_id">
+		<input type="submit" value="중복 체크">
+	</form>
+{{/result}}
+
+{{^result}}
+	{{client_id}}는 사용 가능합니다.<br><br>
+	<input type="button" value="사용" onclick="checkIdClose()">
+{{/result}}
+
+
+
+

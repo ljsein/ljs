@@ -1,0 +1,386 @@
+<!--
+-------------------------
+회원 수정
+-->
+<!-- 
+-----------------------------------------------------
+클라이언트 예약중 리스트
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile Page Prototype</title>
+<link
+   href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap"
+   rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/alpinejs" defer></script>
+<script src="../assets/js/jquery-3.7.1.min.js"></script>
+
+<script type="text/javascript">
+   function initForm(){
+      var frm = document.form5; //form 객체 얻어오기
+      frm.name.value="";
+      frm.pwd.value="";
+      frm.repwd.value="";
+      frm.email.value="";
+      frm.tel.value="";
+      
+   }
+   function initForm2(){
+       {{#client}}
+      var frm = document.form5; //form 객체 얻어오기
+      frm.name.value="{{client_name}}";
+      frm.pwd.value="{{client_pwd}}";
+      frm.repwd.value="{{client_pwd}}";
+      frm.email.value="{{client_email}}";
+      frm.tel.value="{{client_tel}}";
+       {{/client}}
+   }
+       function checkModify() {
+          
+          alert("test");
+          var frm = document.form5;
+          // 이름 입력 검사
+          if (!frm.client_name.value) {
+             alert("이름을 입력해주세요");
+             frm.client_name.focus();
+             return false;
+          }
+          // 비밀번호 입력 검사
+          if (!frm.client_pwd.value) {
+             alert("비밀번호를 확인해주세요")
+             frm.client_pwd.focus();
+             return false;
+          }
+          // 재확인 입력 검사
+          if (!frm.repwd.value) {
+             alert("재확인을 입력해주세요")
+             frm.repwd.focus();
+             return false;
+          }
+          // 비밀번호와 재확인 번호가 같은 지 검사
+          if (frm.client_pwd.value != frm.repwd.value) {
+             alert("비밀번호가 일치하지 않습니다.");
+             frm.repwd.value = "";
+             frm.repwd.focus();
+             return false;
+          }   
+          // 이메일 입력 검사
+          if (!frm.client_email.value) {
+             alert("이메일을 입력해주세요")
+             frm.client_email.focus();
+             return false;
+          }
+          // 전화번호 입력 검사
+          if (!frm.client_tel.value) {
+             alert("전화번호를 입력해주세요")
+             frm.client_tel1.focus();
+             return false;
+          }
+
+          if (confirm("입력하신 내용이 맞습니까?")) {
+             var data = {
+                   "client_id" : frm.client_id.value,
+                   "client_name" : frm.client_name.value,
+                      "client_pwd" : frm.client_pwd.value,
+                      "client_email" : frm.client_email.value,
+                      "client_tel" : frm.client_tel.value
+             };
+               $.ajax({
+                    type : "post",
+                    url: "/client/modify",
+                    data: JSON.stringify(data), // JavaScript 객체를 JSON 문자열로 변환하여 전송
+                    contentType: "application/json", // 전송할 데이터의 형식을 JSON으로 설정
+                    success : function(result){
+                       alert("수정완료");
+                      location.reload(true);
+                    }
+                 });   
+               
+          }
+
+       }
+   
+</script>
+<style>
+body {
+   background-image: url(../image/logo_background.png);
+   background-position: center;
+   background-size: cover;
+}
+
+.slide-in {
+   animation: slideIn 0.5s forwards;
+}
+
+.slide-out {
+   animation: slideOut 0.5s forwards;
+}
+
+@
+keyframes slideIn {from { transform:translateX(100%);
+   
+}
+
+to {
+   transform: translateX(0);
+}
+
+}
+@
+keyframes slideOut {from { transform:translateX(0);
+   
+}
+
+to {
+   transform: translateX(100%);
+}
+
+}
+.card {
+   align-content: center;
+   width: 600px;
+   height: 900px;
+   margin-left: 100px;
+}
+
+.table-card {
+   margin-top: 20px;
+}
+
+.deleteButton {
+   background-color: gray;
+   color: white;
+}
+
+.deleteButton:hover {
+   color: pink;
+}
+
+.bar {
+   background-image: url("../image/background.jpg");
+}
+
+.profile-card {
+   opacity: 0.9;
+}
+
+.slide-enter-active, .slide-leave-active {
+   transition: transform 0.5s;
+}
+
+.slide-enter-from, .slide-leave-to {
+   transform: translateX(-100%);
+}
+
+.slide-leave-from, .slide-enter-to {
+   transform: translateX(0);
+}
+
+.modify-button {
+   background-image: url("../image/background.jpg");
+}
+
+.modify-button2 {
+   background-image: url("../image/background.jpg");
+}
+  .hero{
+    width: 100%;
+    min-height: 100vh;
+    background-image: url(../image/logo_background.png);
+    background-position: center;
+    background-size: cover;
+    padding: 10px 10%;
+    overflow: hidden;
+    position: relative;
+}
+</style>
+</head>
+<body class="font-sans bg-white text-gray-800">
+  
+  <div class="hero">
+   {{>layouts/header}}
+
+   <div class="card">
+    {{>layouts/pop}}
+      <div class="profile-card p-6 shadow-lg rounded-lg">
+
+         {{#client}}
+         <div class="mb-4">
+            <h1 class="text-2xl font-semibold">{{client_name}} 님의 프로필</h1>
+            <button class="deleteButton" onclick="location.href='clientDelete?client_id={{client_id}}'">회원탈퇴</button>
+         </div>
+         <div class="mb-8">
+            <div>
+               <strong>이름 : </strong> {{client_name}}
+            </div>
+            <div>
+               <strong>ID : </strong> {{client_id}}
+            </div>
+            <div>
+               <strong>생년월일 : </strong>
+               {{client_birthyear}}/{{client_birthmonth}}/{{client_birthday}}
+            </div>
+            <div>
+               <strong>전화번호 : </strong> {{client_tel}}
+            </div>
+            <div>
+               <strong>Email : </strong> {{client_email}}
+            </div>
+            <div x-data="{ showForm: false }">
+               <button @click="showForm = !showForm"
+                  class="modify-button mb-4 p-2 text-white rounded">
+                  회원 정보 수정
+                  <svg class="h-4 w-6">
+        <path stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" d="M18 12H6" />
+      </svg>
+               </button>
+               <div x-show="showForm" x-transition:enter="slide-enter-active"
+                  x-transition:enter-start="slide-enter-from"
+                  x-transition:enter-end="slide-enter-to"
+                  x-transition:leave="slide-leave-active"
+                  x-transition:leave-start="slide-leave-from"
+                  x-transition:leave-end="slide-leave-to"
+                  class="bg-white p-6 rounded shadow-md" style="display: none;">
+                  <h2 class="text-lg font-semibold mb-4"
+                     style="background-image: url(../image/background.jpg);">정보수정하기</h2>
+                  <script type="text/javascript" src="../js/memberScript.js?v=3"></script>
+                  <form action="/client/modify" name="form5" method="post"
+                     style="padding: 20px">
+                     <table class="table" border="1"
+                        style="width: 400px; margin: auto;">
+                        <tr>
+                           <th width="100">이름 :</th>
+                           <td><input type="text" name="client_name" size="15"
+                              value="{{client_name}}"></td>
+                        </tr>
+                        <tr>
+                           <th>아이디</th>
+                           <td><input type="text" name="client_id" size="15"
+                              value="{{client_id}}" readonly="readonly"
+                              style="background-color: gray; color: white;"></td>
+                        </tr>
+                        <tr>
+                           <th>비밀번호 :</th>
+                           <td><input type="password" name='client_pwd'
+                              value="{{client_pwd}}"></td>
+                        </tr>
+                        <tr>
+                           <th>재확인</th>
+                           <td><input type="password" name="repwd"
+                              value="{{client_pwd}}"></td>
+                        </tr>
+                        <tr>
+                           <th>이메일 :</th>
+                           <td><input type="email" name="client_email" size="15"
+                              value="{{client_email}}"></td>
+                        </tr>
+                        <tr>
+                           <th>핸드폰 :</th>
+                           <td><input type="tel" name="client_tel" size="15"
+                              maxlength="13" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" value="{{client_tel}}" required="required">
+                        </tr>
+                        <tr>
+                           <td colspan="3" align="left"><input type="button"
+                              value="수정" onclick="checkModify()" size="2"
+                              style="background-color: pink; color: white;"> <input
+                              type="button" value="초기화" onclick="initForm()" size="2"
+                              style="background-color: pink; color: white;"> <input
+                              type="button" value="되돌리기" onclick="initForm2()" size="2"
+                              style="background-color: pink; color: white;"></td>
+                        </tr>
+                     </table>
+                  </form>
+                  {{/client}}
+               </div>
+            </div>
+            </div>
+            <script>
+  // Alpine.js initialization for the toggle effect
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('formToggle', () => ({
+      showForm: false
+    }));
+  });
+</script>
+            <!-- 선  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+         </div>
+         <button id="toggleTable"
+            class="modify-button2 px-4 py-2 text-white rounded hover:bg-blue-600 focus:outline-none transition duration-300">
+            예약 상태</button>
+         <div id="tableContainer" class="hidden overflow-hidden">
+            <!-- Placeholder for table -->
+            <div class="table-card">
+               <table id="reservationTable" style="width: 600px;">
+                  <thead'>
+                     <tr style="text-align: center;" class="bar">
+                        <th width="100">예약 시간</th>
+                        <th width="60">결제상태</th>
+                        <th width="60">결제취소</th>
+                     </tr>
+                  </thead>
+                  <tbody style="text-align: center;">
+                     {{#list}}
+                     <tr>
+                        <td>{{reserv_date}}</td>
+                        <td>{{reserv_statename}}</td> 
+                           {{#deletable}}
+                        <td>
+                           <button class="deleteButton" onclick="hideButton({{reserv_seq}})" >예약취소</button>
+                        </td>
+                         {{/deletable}}
+                         {{^deletable}}
+                        <td>
+                           <button style="background-color: gray; color: #D8D8D8;"
+                              class="deleteButtonaaa" hidden="">예약취소</button>
+                        </td> 
+                         {{/deletable}}
+                     </tr>
+                     {{/list}}
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+   </div>
+   {{>layouts/footer}}
+</body>
+<!-- 회원정보 수정 버튼 -->
+<script>
+function hideButton(reserv_seq){
+   alert("test");
+   var button = document.querySelector(".deleteButton");
+    button.style.display = 'none';
+   location.href="clientResDelete?reserv_seq=" + reserv_seq;
+}
+
+</script>
+<!-- 예약 리스트 버튼 -->
+<script>
+  const toggleTable = document.getElementById('toggleTable');
+  const tableContainer = document.getElementById('tableContainer');
+
+  toggleTable.addEventListener('click', function() {
+    if (tableContainer.classList.contains('hidden')) {
+      tableContainer.classList.remove('hidden', 'slide-out');
+      tableContainer.classList.add('slide-in');
+    } else {
+      tableContainer.classList.remove('slide-in');
+      tableContainer.classList.add('slide-out');
+      setTimeout(() => tableContainer.classList.add('hidden'), 100);
+    }
+  });
+</script>
+<script>
+  // Alpine.js initialization for the toggle effect
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('formToggle', () => ({
+      showForm: false
+    }));
+  });
+</script>
+</html>

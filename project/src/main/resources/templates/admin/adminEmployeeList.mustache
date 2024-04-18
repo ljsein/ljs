@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+
+   <!-- title -->
+   <title>관리자직원관리</title>
+
+   <!-- google font -->
+   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+   <!-- fontawesome -->
+   <link rel="stylesheet" href="../assets/css/all.min.css">
+   <!-- bootstrap -->
+   <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+   <!-- owl carousel -->
+   <link rel="stylesheet" href="../assets/css/owl.carousel.css">
+   <!-- magnific popup -->
+   <link rel="stylesheet" href="../assets/css/magnific-popup.css">
+   <!-- animate css -->
+   <link rel="stylesheet" href="../assets/css/animate.css">
+   <!-- mean menu css -->
+   <link rel="stylesheet" href="../assets/css/meanmenu.min.css">
+   <!-- main style -->
+   <link rel="stylesheet" href="../assets/css/main.css">
+   <!-- responsive -->
+   <link rel="stylesheet" href="../assets/css/responsive.css">
+
+   <!-- Custom styles for this page -->
+   <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+   <!-- Custom fonts for this template-->
+   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+   <!-- Custom styles for this template-->
+   <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+
+   
+   <!-- Custom styles for this page -->
+      <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+   <link href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css" rel="stylesheet">
+
+
+
+
+<style type="text/css">
+
+.form-control,.bootstrap-table-filter-control-goods_code,.search-input{
+background-color: #5a5c69;
+border: 1px solid #5a5c69;
+
+color: black;
+text-align: center;
+
+
+}
+.btn_view {
+    CONTAIN-INTRINSIC-BLOCK-SIZE: AUTO 100PX;
+    display: inline-block;
+    text-decoration: none;
+    padding: 14px 10px;
+    color: white;
+    background-image: linear-gradient(45deg, #df4881, #c430d7);
+    font-size: 10px;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+/* named upload */
+.filebox .employee_imagefile {
+  display: inline-block;
+  padding: .5em .75em;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #f5f5f5;
+  border: 1px solid #ebebeb;
+  border-bottom-color: #e2e2e2;
+  border-radius: .25em;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.input_file {
+
+width: 150px;
+			background-color: #00ffbd;
+			border-radius: inherit;
+			height: 25px;
+			color: white;
+			cursor: pointer;
+
+}
+.filebox.bs3-primary label {
+  margin-top: 0.5em;
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+.where {
+  display: block;
+  margin: 25px 15px;
+  font-size: 11px;
+  color: #000;
+  text-decoration: none;
+  font-family: verdana;
+  font-style: italic;
+} 
+
+.filebox input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip:rect(0,0,0,0);
+  border: 0;
+}
+
+.filebox label {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #999;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #fdfdfd;
+  cursor: pointer;
+  border: 1px solid #ebebeb;
+  border-bottom-color: #e2e2e2;
+  border-radius: .25em;
+}
+.tableborder{
+
+	border-right: 1px solid white;
+	text-align: center;
+}
+.btn-primary{
+
+background-color: #5a5c69; 
+border: 1px solid #5a5c69;
+
+width: 100px;
+height: 32px;
+
+
+
+
+}
+.pagination{
+
+padding-right: 450px;
+
+
+}
+.hero{
+    width: 100%;
+    min-height: 100vh;
+    background-image: url(../image/logo_background.png);
+    background-position: center;
+    background-size: cover;
+    padding: 10px 10%;
+    overflow: hidden;
+    position: relative;
+}
+
+</style>
+</head>
+<body>
+   {{>layouts/adminheader}}
+
+<div class="hero">	
+{{#adminId}}
+<div class="row" width="1000px">
+<div class="col-xl-4" style="margin:10px;"><a href="/admin/adminEmployeeWriteForm" class="btn">직원등록</a></div>
+<div class="card shadow mb-4">
+
+      <div class="card-body">
+         <div class="table-responsive text-center">
+         	<div id="reserv">
+			<table class="table table-layout: fixed" id="table" width="100%" data-pagination="true" data-page-number="1" data-toggle="table" cellspacing="0" data-filter-control="true" data-show-search-clear-button="true"  data-sort-class="table-active" data-sortable="true">
+               <thead class="table-dark">
+						<span><h1>직원관리</h1></span>  
+                  <tr class="text-center">      
+                  	 <th width = "10%" data-field="employee_id"  data-filter-control="input" data-sortable="true">직원아이디</th>    
+                     <th width = "10%" data-field="employee_name"  data-filter-control="input" data-sortable="true">이름</th>     <!-- width 설정은 본인이 알아서 설정 -->           
+                     <th width = "10%" data-field="employee_birth" data-filter-control="input" data-sortable="true">생년월일</th>
+					 <th width = "10%" data-field="employee_gender"  data-filter-control="select" data-sortable="true">성별</th>     <!-- width 설정은 본인이 알아서 설정 -->           
+                     <th width = "10%" data-field="employee_hit" data-filter-control="input" data-sortable="true">예약횟수</th>
+                     <th width = "10%" data-field="employee_price" data-filter-control="input" data-sortable="true">결제금액</th>               
+                	 <th width = "10%" data-field="" data-filter-control="input" data-sortable="true">상세보기</th>
+                 </tr>
+               </thead>
+               <tbody class="table-hover" >
+                  {{#list}}
+                     <tr class="text-left" >
+   						<td style="border-right: 1px solid white; text-align: center;">{{employee_id}}</td>
+                        <td style="border-right: 1px solid white; text-align: center;">{{employee_name}}</td>
+                        <td style="border-right: 1px solid white; text-align: center;">{{employee_birth}}</td>
+                        <td style="border-right: 1px solid white; text-align: center;">{{employee_gender}}</td>
+                        <td style="border-right: 1px solid white; text-align: center;">{{employee_hit}}</td>
+                        <td style="border-right: 1px solid white; text-align: center;">{{employee_price}}</td>
+						 <td style="border-right: 1px solid white; text-align: center;">
+						 
+						 <button class="btn_view" onclick="adminemployeeView('{{employee_id}}')">상세보기</button>
+						 <button type="button"  class="btn_view" id="delete" onclick="adminEmployeeDelete('{{employee_id}}')">삭제</button>
+						 
+						 </td>
+                     		
+                     </tr>
+                  {{/list}}
+               </tbody>
+            </table>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+{{/adminId}}  
+   </div>
+  
+
+   
+    <!-- adminMvViewModal Modal-->
+    <div class="modal fade" id="adminEmployeeViewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document" style="max-width: 1000px;" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-gray-900 text-primary font-weight-bold" id="exampleModalLabel">직원 상세 정보</h5>
+                    <button class="close" type="button" id="x" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="/admin/adminEmployeeModify" method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                	<div class="row">
+						<div class="col-lg-4 mb-5 mb-lg-0">
+					<div class="single-product-item" style="text-align: center; width:100%; heigth: 82%; width: 300px; height: 300px;">
+						<div class="product-image" id="imgbackground">
+							<img id="employee_image" style="width: 250px; height: 250px;" src="" >
+						</div>
+						<p style="color: red;">직원이미지</p>
+						<div class="filebox bs3-primary">
+						<label class="input-file" for="fileUpload" id="imagewrite" style="background-color: navy; border: 1px solid navy;">
+							<i class="fa-solid fa-camera">
+							직 원 이 미 지 수 정
+							</i>
+						</label>
+						<input type="file" id="fileUpload" name="employee_imagefile" onchange="loadFile(this)" readonly="readonly">
+						<br>
+						
+              				<input class="employee_imagefile" id="employee_image" value="파일선택" disabled="disabled">
+
+            		  <label for="ex_filename" style="background-color: navy; border: 1px solid navy;" id="uploadfile">업로드</label> 
+             				 <input type="file" id="ex_filename" class="upload-hidden" name="employee_imagefile" onchange="loadFile(this)"> 
+            		</div>
+						
+						
+						</div>
+							</div>
+						<div class="col-8">
+							<div class="row">
+								<div class="col-12">
+									<div class="text-gray-900">
+                                          
+                                          <div class="row gx-12 mb-3">      
+                                                <div class="col-md-12 font-weight-bold">
+                                                    <label class="small mb-1" for="employee_id">직원아이디</label>
+                                                    <input class="form-control" id="employee_id" name="employee_id" type="text"  readonly="readonly" value="">
+                                                </div>
+                                            </div>
+                                           </div>
+                                            <div class="row gx-3 mb-3">      
+                                             <div class="col-md-6">
+                                                <label class="small mb-1" for="employee_name">이름</label>
+                                                <input class="form-control" id="employee_name" name="employee_name" type="text" readonly="readonly"  value="">
+                                           	</div>
+                                           	<div class="col-md-6">
+                                                    <label class="small mb-1" for="employee_birth">생년월일</label>
+                                                    <input class="form-control" id="employee_birth" name="employee_birth" type="text" readonly="readonly"  >
+                                           	</div>
+                                           
+                                            </div>
+                                            <!-- Form Row        -->
+                                            <div class="row gx-3 mb-3">
+                                       
+                                                
+                                                <div class="col-md-6">
+                                                 <label class="small mb-1" for="employee_height">키</label>
+                                                    <input class="form-control" id="employee_height" name="employee_height" type="text" readonly="readonly" >
+                                                </div>
+                                                
+                                                <div class="col-md-6">
+                                                    <label class="small mb-1" for="employee_gender">성별</label><br>
+                                                    <input id="employee_gender" name="employee_gender" type="radio" readonly="readonly"  value="w" disabled >여
+                                                	<input  id="employee_gender" name="employee_gender" type="radio" readonly="readonly" value="m" disabled>남
+                                                </div>
+
+                                            </div>
+                                                <div class="row gx-3 mb-3">
+												<div class="col-md-12 font-weight-bold">
+                                                    <label class="small mb-1" for="employee_price">가격</label>
+                                                    <input class="form-control" id="employee_price" name="employee_price" type="text"  readonly="readonly" value="">
+                                                </div>	
+												</div>
+                                            <!-- Form Group (상품설명)-->
+                                             <div class="row gx-3 mb-3">
+                                            <div class="mb-3">
+                                            
+                                             <div class="col-md-12">
+                                                <label class="small mb-1" for="employee_content">인사말</label>
+                                                
+                                                <textarea style="height: 70px; width: 639px;" class="form-control" name="employee_content" id="employee_content" class="textarea" readonly="readonly"></textarea>
+                                            </div>    
+                                            </div>                                                                                                                                    
+                                            </div>
+                                            <button class="btn" type="button"  id="openBtn" onclick="EmployeemodifyOpen()">직원수정</button>
+                                            <button class="btn" id="submitBtn" type="submit" onclick="EmployeeModify()">수정하기</button>
+                                            <button class="btn" id="closeBtn" type="button" onclick="EmployeemodifyClose()" >취소</button>
+											
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					</form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" type="button" id="modalClose" data-dismiss="modal">닫기</button>
+                </div>
+                  
+            </div>
+            
+        </div>
+      
+{{>layouts/footer}}
+   
+</body>
+   <!-- jquery -->
+   <script src="../assets/js/jquery-1.11.3.min.js"></script>
+   <!-- bootstrap -->
+   <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+   <!-- count down -->
+   <script src="../assets/js/jquery.countdown.js"></script>
+   <!-- isotope -->
+   <script src="../assets/js/jquery.isotope-3.0.6.min.js"></script>
+   <!-- waypoints -->
+   <script src="../assets/js/waypoints.js"></script>
+   <!-- owl carousel -->
+   <script src="../assets/js/owl.carousel.min.js"></script>
+   <!-- magnific popup -->
+   <script src="../assets/js/jquery.magnific-popup.min.js"></script>
+   <!-- mean menu -->
+   <script src="../assets/js/jquery.meanmenu.min.js"></script>
+   <!-- sticker js -->
+   <script src="../assets/js/sticker.js"></script>
+   <!-- main js -->
+   <script src="../assets/js/main.js"></script>
+   <!-- Page level plugins -->
+   <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+   <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+   <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.js"></script>
+   <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
+<script type="text/javascript">
+function adminEmployeeDelete(employee_id){
+	
+	location.href='/admin/adminEmployeeDelete?employee_id='+employee_id;
+	alert("직원 정보 삭제 성공");
+}
+
+
+
+</script>
+
+<script type="text/javascript">
+		function loadFile(input) {
+			
+			  var file = event.target.files[0];
+			  
+			  var reader = new FileReader();
+			  
+			  reader.onload = function(input){
+				  $("#employee_image").attr("src", input.target.result);
+			  }
+			  
+			  reader.readAsDataURL(file);
+			}
+			
+		
+		
+		function adminemployeeView(employee_id){
+			console.log("adminEmployeeViewModal() 호출" );
+			$.ajax({
+				type : "get",
+				url : "/admin/adminEmployeeViewModal",
+				data : { "employee_id" : employee_id },
+				dataType: "json",
+				async:false,
+				success : function(result){
+
+
+					$("#employee_id").val(result.employee_id);
+					$("#employee_name").val(result.employee_name);
+					$("#employee_birth").val(result.employee_birth);
+					$("#employee_height").val(result.employee_height);
+					$("#employee_gender").val(result.employee_gender);
+					$("#employee_price").val(result.employee_price);
+					
+					
+					if(result.employee_gender == "w"){
+						
+						$("input[value='w']").attr("checked","checked");
+						
+					}else{
+						
+						$("input[value='m']").attr("checked","checked");
+					}
+					
+					
+					
+					$("#employee_content").val(result.employee_content);
+					if(result.employee_image.substring(0.4) == 'http'){
+						
+					$("#employee_image").attr("src",result.employee_image);
+					}else{
+						$("#employee_image").attr("src","../flieUpload/"+result.employee_image);
+					}
+	
+
+					
+				
+				
+				}
+				
+			});
+			$("#adminEmployeeViewModal").modal('show');
+		}
+		$(document).ready(function(){
+			
+			 $("#submitBtn").hide();
+			 $("#imagewrite").hide();
+			 $("#ex_filename").hide();
+			 $("#uploadfile").hide();
+			 $('.employee_imagefile').hide();
+			 $("#modalClose").show();
+			 $("#openBtn").show();
+			 $("#closeBtn").hide();
+			 
+		        $('#openBtn').click(function(){
+		        	   $("#delete").hide();
+			           $("#openBtn").hide();
+			           $("#submitBtn").show();
+			           $("#closeBtn").show();
+			           $("#imagewrite").show();
+			           $("#ex_filename").show();
+			           $("#uploadfile").show();
+			           $('.employee_imagefile').show();
+			       	$("#modalClose").show();    
+		                   });
+		        $('#submitBtn').click(function(){
+			           $("#submitBtn").hide();
+			           $("#openBtn").show();
+			           $("#delete").show();
+			           $("#modalClose").show();
+			       });
+		        
+
+		        $('#closeBtn').click(function(){
+		        	$("#openBtn").show();
+		        	 $("#submitBtn").hide();
+		        	 $("#closeBtn").hide();
+					$("#employee_name").css("background-color","#eaecf4");
+					$("#employee_birth").css("background-color","#eaecf4");
+		 			$("#employee_height").css("background-color","#eaecf4");
+					$("#employee_gender").css("background-color","#eaecf4");
+					$("#employee_price").css("background-color","#eaecf4");
+					$("#employee_content").css("background-color","#eaecf4");
+					
+					$("#modalClose").show();    
+					  $("#imagewrite").hide();
+			           $("#ex_filename").hide();
+			           $("#uploadfile").hide();
+			           $('.employee_imagefile').hide();
+					
+		        
+		        });
+		        $('#modalClose').click(function(){
+		        	
+
+		        	$("#delete").show();
+		        	$("#openBtn").show();
+		        	 $("#submitBtn").hide();
+		        	 $("#closeBtn").hide();
+			        $("#employee_name").attr("readonly","readonly");
+			 		$("#employee_birth").attr("readonly","readonly");
+			 		$("#employee_height").attr("readonly","readonly");
+			 		$("#employee_gender").attr("disabled","disabled");
+		        	$("#employee_price").attr("readonly","readonly");
+		 			$("#employee_content").attr("readonly","readonly");
+
+		 			$("#ex_filename").attr("readonly","readonly");
+		 			$("#fileUpload").attr("readonly","readonly");
+		        	 
+
+		 			
+		 			
+		 			$("#employee_name").css("background-color","#eaecf4");
+					$("#employee_birth").css("background-color","#eaecf4");
+					$("#employee_height").css("background-color","#eaecf4");
+					$("#employee_gender").css("background-color","#eaecf4");
+					$("#employee_price").css("background-color","#eaecf4");
+					$("#employee_content").css("background-color","#eaecf4");
+					  $("#imagewrite").hide();
+			           $("#ex_filename").hide();
+			           $("#uploadfile").hide();
+			           $('.employee_imagefile').hide();
+					
+					
+		                   });
+		        
+		        
+		        
+		 });  
+			
+		$(document).ready(function(){
+			 var fileTarget1 = $("#fileUpload");
+			  fileTarget1.on('change', function(){  // 값이 변경되면
+				    if(window.FileReader){  // modern browser
+				      var filename = $(this)[0].files[0].name;
+				    };
+				    
+			  $(this).siblings('.employee_imagefile').val(filename);
+			  });
+			}); 
+		
+		
+
+		$(document).ready(function(){
+			  var fileTarget = $('.filebox .upload-hidden');
+
+			  fileTarget.on('change', function(){  // 값이 변경되면
+			    if(window.FileReader){  // modern browser
+			      var filename = $(this)[0].files[0].name;
+			    };
+			    
+			    // 추출한 파일명 삽입
+			    $(this).siblings('.employee_imagefile').val(filename);
+			  });
+			}); 
+
+		function EmployeemodifyOpen(){
+
+			
+			console.log("modifyOpen() 호출")
+			$("#employee_name").removeAttr("readonly");
+			$("#employee_birth").removeAttr("readonly");
+			$("#employee_height").removeAttr("readonly");
+			$("input[value='w']").removeAttr("disabled");
+			$("input[value='m']").removeAttr("disabled");
+			$("#employee_price").removeAttr("readonly");
+			$("#employee_content").removeAttr("readonly");
+			$("#ex_filename").removeAttr("readonly");
+			$("#fileUpload").removeAttr("readonly");
+			
+
+			
+			$("#employee_name").css("background-color","white");
+			$("#employee_birth").css("background-color","white");
+			$("#employee_height").css("background-color","white");
+			$("#employee_gender").css("background-color","white");
+			$("#employee_price").css("background-color","white");
+			$("#employee_content").css("background-color","white");  
+			
+			
+			$("#openBtn").toggleClass("btn");
+			$("#closeBtn").toggleClass("btn");
+			$("#submitBtn").toggleClass("btn");
+			$("#submitBtn").addClass("btn");
+			$("#openBtn").addClass("btn");
+			$("#closeBtn").addClass("btn");
+			
+		}
+		function EmployeemodifyClose(){
+			console.log("modifyClose() 호출")
+			$("#employee_name").attr("readonly","readonly");
+			$("#employee_birth").attr("readonly","readonly");
+			$("#employee_height").attr("readonly","readonly");
+			$("input[value='w']").attr("disabled","disabled");
+			$("input[value='m']").attr("disabled","disabled");
+			$("#employee_price").attr("readonly","readonly");
+			$("#employee_content").attr("readonly","readonly");
+			$("#ex_filename").attr("readonly","readonly");
+			$("#fileUpload").attr("readonly","readonly");
+
+			
+			$("#openBtn").toggleClass("btn");
+			$("#closeBtn").toggleClass("btn");
+			$("#submitBtn").toggleClass("btn");
+			$("#submitBtn").addClass("btn");
+			$("#openBtn").addClass("btn");
+			$("#closeBtn").addClass("btn");
+			
+		}
+		$("#x").click(function(){
+		 $("#delete").show();
+		 $("#openBtn").show();
+       	 $("#submitBtn").hide();
+       	 $("#closeBtn").hide();
+			
+			$("#employee_name").attr("readonly","readonly");
+			$("#employee_birth").attr("readonly","readonly");
+			$("#employee_height").attr("readonly","readonly");
+			$("input[value='w']").attr("disabled","disabled");
+			$("input[value='m']").attr("disabled","disabled");
+			$("#employee_price").attr("readonly","readonly");
+			$("#employee_content").attr("readonly","readonly");
+			$("#ex_filename").attr("readonly","readonly");
+			$("#fileUpload").attr("readonly","readonly");
+
+
+ 			$("#employee_name").css("background-color","#eaecf4");
+			$("#employee_birth").css("background-color","#eaecf4");
+			$("#employee_height").css("background-color","#eaecf4");
+			$("#employee_gender").css("background-color","#eaecf4");
+			$("#employee_price").css("background-color","#eaecf4");
+			$("#employee_content").css("background-color","#eaecf4");
+			  $("#imagewrite").hide();
+	           $("#ex_filename").hide();
+	           $("#uploadfile").hide();
+	           $('.employee_imagefile').hide();
+			
+			
+			$("#openBtn").toggleClass("btn");
+			$("#closeBtn").toggleClass("btn");
+			$("#submitBtn").toggleClass("btn");
+			$("#submitBtn").addClass("btn");
+			$("#openBtn").addClass("btn");
+			$("#closeBtn").addClass("btn");
+			
+		});
+
+		
+		function EmployeeModify(){
+			
+			alert("상품이 수정되었습니다.");
+			
+			
+		}
+		
+
+		
+		
+ </script>
+</html>

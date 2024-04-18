@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>윙크~ 데이트 예약</title>
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script src="../js/signup.js"></script>
+
+<style>
+.listArea {
+   min-height: 250px;
+   max-height: 250px;
+   overflow: auto;
+}
+
+.listArea div:hover {
+   cursor: pointer;
+}
+
+.ui-datepicker {
+   width: 100%;
+   height: 100%;
+   min-height: 280px;
+   max-height: 280px;
+}
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+    border: 1px solid #deeppink;
+    background: #deeppink;
+    color: #deeppink;
+}
+
+.liststyle {
+   min-height: 250px;
+   max-height: 250px;
+}
+.form-label {
+   display: inline;
+   width: 20%;
+   padding: .375rem .75rem;
+   font-size: 1rem;
+   font-weight: 400;
+   line-height: 1.5;
+   color: white;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   background-image: url('/image/background.jpg');
+   background-clip: padding-box;
+   border: var(--bs-border-width) solid var(--bs-border-color);
+   border-radius: var(--bs-border-radius);
+   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+.input-label {
+   display: inline;
+   width: 20%;
+   padding: .375rem .75rem;
+   font-size: 1rem;
+   font-weight: 400;
+   line-height: 1.5;
+   color: white;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   background-image: url('/image/background.jpg');
+   background-clip: padding-box;
+   border: var(--bs-border-width) solid var(--bs-border-color);
+   border-radius: var(--bs-border-radius);
+   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+.form-date_price {
+   display: inline;
+   width: 65.4%;
+   padding: .375rem .75rem;
+   font-size: 1rem;
+   font-weight: 400;
+   line-height: 1.5;
+   color: var(--bs-body-color);
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   background-color: var(--bs-body-bg);
+   background-clip: padding-box;
+   border: var(--bs-border-width) solid var(--bs-border-color);
+   border-radius: var(--bs-border-radius);
+   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+.form-control1 {
+   display: inline;
+   width: 49.9%;
+   padding: .375rem .75rem;
+   font-size: 1rem;
+   font-weight: 400;
+   line-height: 1.5;
+   color: var(--bs-body-color);
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   background-color: var(--bs-body-bg);
+   background-clip: padding-box;
+   border: var(--bs-border-width) solid var(--bs-border-color);
+   border-radius: var(--bs-border-radius);
+   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+.btn_address {
+   display: inline;
+   width: 40%;
+   padding: .375rem .75rem;
+   font-size: 1rem;
+   font-weight: 400;
+   line-height: 1.5;
+   color: white;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   background-image: url('/image/background.jpg');
+   background-clip: padding-box;
+   border: var(--bs-border-width) solid var(--bs-border-color);
+   border-radius: var(--bs-border-radius);
+   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+.btn_del {
+   text-align: center;
+   width: 15%;
+   padding: .5rem .5rem;
+   font-size: 1rem;
+   font-weight: 400;
+   line-height: 1.5;
+   color: white;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   background-image: url('/image/background.jpg');
+   background-clip: padding-box;
+   border: var(--bs-border-width) solid var(--bs-border-color);
+   border-radius: var(--bs-border-radius);
+   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+.adress-control1 {
+   display: inline;
+   width: 58%;
+   padding: .375rem .75rem;
+   font-size: 1rem;
+   font-weight: 400;
+   line-height: 1.5;
+   color: var(--bs-body-color);
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   background-color: var(--bs-body-bg);
+   background-clip: padding-box;
+   border: var(--bs-border-width) solid var(--bs-border-color);
+   border-radius: var(--bs-border-radius);
+   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+.adress-control {
+   display: inline;
+   width: 100%;
+   padding: .375rem .75rem;
+   font-size: 1rem;
+   font-weight: 400;
+   line-height: 1.5;
+   color: var(--bs-body-color);
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   background-color: var(--bs-body-bg);
+   background-clip: padding-box;
+   border: var(--bs-border-width) solid var(--bs-border-color);
+   border-radius: var(--bs-border-radius);
+   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+  .hero{
+    width: 100%;
+    min-height: 100vh;
+    background-image: url(../image/logo_background.png);
+    background-position: center;
+    background-size: cover;
+    padding: 10px 10%;
+    overflow: hidden;
+    position: relative;
+}
+</style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+</head>
+<body>
+	  
+	  <div class="hero">
+{{>layouts/header}}
+      <div class="row">
+			<div  class="col-xl-4"  align="center">
+			<div class="card mb-5" 
+                  style="background-color: transparent; width: 350px;background-image: url('/image/background.jpg'); padding-bottom: 20px; ">
+                    
+                    <div class="card-header" style="text-align: center; ">
+                     <h6 style="color: white;">이벤트</h6>
+                  </div>
+                     <img alt="image" src="../flieUpload/{{event1.event_imagecode}}" width="349px" height="800px">
+                  </div>
+	
+         </div>
+           <div class="col-xl-4"  align="center">
+         <div class="card mb-5"  style="background-color: transparent; width: 350px;background-image: url('/image/background.jpg'); padding-bottom: 20px; ">
+                  
+                  <div class="card-header"
+                     style="text-align: center; ">
+                     <h6 style="color: white;">날짜</h6>
+                  </div>
+
+                  <div class="card-body1 text-gray-900" style="border-radius-bottom: 30px; background-color: white; padding: 30px;">
+                     <div id="datepicker" align="center" height="370px";></div>
+                  </div>
+
+               </div>
+         
+          <div class="card mb-5" style="background-color: transparent; background-image: url('/image/background.jpg'); width: 350px; padding-bottom: 20px;">
+
+                  <div class="card-header" style="text-align: center;">
+                     <h6 style="color: white;">예약 시간 선택</h6>
+                  </div>
+				  <div  class="card-body1 listArea text-gray-900 scoll" style="background-color: white;  border-radius-bottom: 30px; padding: 30px;">	
+                  <div id="timeList1">
+						<input type="button" class="form-control btn_time" id="time1" value="09:00 ~ 12:00" > 
+						<input type="button" class="form-control btn_time" id="time2" value="12:00 ~ 15:00" > 
+						<input type="button" class="form-control btn_time" id="time3" value="15:00 ~ 18:00" > 
+						<input type="button" class="form-control btn_time" id="time4" value="18:00 ~ 21:00" > 
+						<input type="button" class="form-control btn_time" id="time5" value="21:00 ~ 00:00" > 
+						<input type="button" class="form-control btn_time" id="time6" value="00:00 ~ 03:00" > 
+						<input type="button" class="form-control btn_time" id="time7" value="03:00 ~ 06:00" > 
+						<input type="button" class="form-control btn_time" id="time8" value="06:00 ~ 09:00" > 
+                  </div>
+                  </div>
+               </div>
+            </div>
+		
+         <div class="col-xl-4 col-lg-2" align="center">
+         
+         <div class="card mb-5" style="background-color: transparent; width: 350px;background-image: url('/image/background.jpg'); padding-bottom: 20px; ">
+         <div class="card-header" style="text-align: center; ">
+                     <h6 style="color: white;">데이트 장소</h6>
+         </div>
+         <div class="card-body1 text-gray-900" style="border-radius-bottom: 30px; background-color: white; padding:20px;">
+         <input type="text" class="adress-control1" id="sample6_postcode" placeholder="우편번호">
+         <input type="button"onclick="sample6_execDaumPostcode()" class="btn_address" value="우편번호 찾기"><br>
+         <input type="text" class="adress-control" id="sample6_address" placeholder="주소"><br>
+         <input type="text" class="adress-control" id="sample6_extraAddress" placeholder="참고항목">
+         <input type="text" class="adress-control" id="sample6_detailAddress" placeholder="상세주소">
+         <div id="map" style="width:300px;height:200px;margin-top:10px;display:none"></div>
+         </div>
+         </div>
+         
+         <input type="hidden" class="employee_price" value="{{employee_price}}">
+         <form action="/reservation/reservationWrite" method="post" name="form1">   
+		 <div class="card mb-5" style="background-color: transparent; background-image: url('/image/background.jpg'); width: 350px; padding-bottom: 20px;">
+                  <div class="card-header py-3 text-center" style="background-image: url('/image/background.jpg');">
+                     <h6 class="m-0 font-weight-bold h5 text-white">선택 확인</h6>
+                  </div>
+                  <input type="hidden" name="client_id" id="client_id" value="{{client_id}}">
+         		  <input type="hidden" name="employee_id" id="employee_id" value="{{employee_id}}">    
+                  <input type="hidden" id="reserv_address" name="reserv_address">
+                  
+                  <div class="card-body  text-gray-900" style="background-color: white; border-radius-bottom: 30px;">
+                     <div class="font-weight-bold text-lg">
+						<label  class="form-label">예약날짜</label>
+						
+                        <input class="form-date_price" id="reserv_date" name="reserv_date" type="date" readonly="readonly" placeholder="날짜">
+                     </div>
+                     <div class="font-weight-bold text-lg time" id="rctime"></div>
+                     <div class="font-weight-bold text-lg time">
+                     <label class="form-label">결제금액</label>
+                     <input class="form-date_price total_price" id="reserv_price" name="reserv_price" type="text" value="" readonly="readonly" placeholder="결제금액"></div>
+                     <div class="font-weight-bold text-lg">
+                        <input class="form-control btn-red" style="background-image: url('/image/background.jpg'); color: white;" type="button" onclick="Pay('{{memName}}','{{client_tel}}')" value="예약하기">
+                     </div>
+                  </div>
+               </div>
+                  </form>
+            </div>
+      
+         </div>
+
+
+   </div>
+   	  {{>layouts/footer}}
+</body>
+<script type="text/javascript">
+$("#timeList1").hide();
+
+
+</script>
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fccf9e40f255d5b9f2759ef414efc6c3&libraries=services"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://kit.fontawesome.com/4fb5398ede.js" crossorigin="anonymous"></script>
+<!-- Custom scripts for all pages-->
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<script src="../reservation/address.js?v=3"></script>
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script type="text/javascript">
+$.datepicker.setDefaults({
+    dateFormat : 'yy-mm-dd',
+    prevText : '이전 달',
+    nextText : '다음 달',
+    minDate: 0,
+    monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월',
+          '10월', '11월', '12월' ],
+    monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월',
+          '9월', '10월', '11월', '12월' ],
+    dayNames : [ '일', '월', '화', '수', '목', '금', '토' ],
+    dayNamesShort : [ '일', '월', '화', '수', '목', '금', '토' ],
+    dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+    showMonthAfterYear : true,
+    yearSuffix : '년'
+ });
+
+ $(function() {
+    $("#datepicker").datepicker({
+       onSelect : function(selDate) {
+          selectSchedulesDate = selDate;
+          $("#reserv_date").val(selectSchedulesDate);
+			reservationTime();
+       }
+
+    });
+ });
+</script>
+<script type="text/javascript">
+
+function selectEmList(selObj){
+	if($(selObj).hasClass("btn_time")){
+		/* 극장목록 CSS 변경 */
+		$(selObj).css("background-color","").css("color","");
+		$(selObj).css("background-color","black").css("color","white");
+	} else {
+		$(selObj).addClass("btn_time").css("color","white");
+	}
+}
+var selectSchedulesDate = "";
+var count = 0;
+var result_count = 0;
+var disabled_count = 0;
+function reservationTime(){
+	if(count < 3){
+	if(selectSchedulesDate.length > 0){
+var time_employeeid = $("#employee_id").val();
+var time_reservdate = selectSchedulesDate;
+	  var output = "";
+		$.ajax({
+		  type : "get",
+		  url : "/reservation/TimeList",
+		  dataType : "json",
+		  data : {"time_employeeid": time_employeeid,"time_reservdate" : time_reservdate},
+		  success : function(result){
+				result_count = result.length;
+				disabled_count = 0;
+				 if(result != null){
+			            
+			            
+			            if(result_count == 1){
+			               
+			            
+			            if(result[0].time_state1 == true){
+			                  
+			                  $("#time1").attr("disabled", true);
+			                  disabled_count +=1;
+			               }else{
+			                  
+			                  $("#time1").attr("disabled", false);
+			               }
+			               if(result[0].time_state2 == true){
+			                  
+			                  $("#time2").attr("disabled", true);
+			                  disabled_count +=1;
+			               }else{
+			                  
+			                  $("#time2").attr("disabled", false);
+			               }
+			               if(result[0].time_state3 == true){
+			                  
+			                  $("#time3").attr("disabled", true);
+			                  disabled_count +=1;
+			               }else{
+			                  
+			                  $("#time3").attr("disabled", false);
+			               }
+			               if(result[0].time_state4 == true){
+			                  
+			                  $("#time4").attr("disabled", true);
+			                  disabled_count +=1;
+			               }else{
+			                  
+			                  $("#time4").attr("disabled", false);
+			               }
+			               if(result[0].time_state5 == true){
+			                  
+			                  $("#time5").attr("disabled", true);
+			                  disabled_count +=1;
+			               }else{
+			                  
+			                  $("#time5").attr("disabled", false);
+			               }
+			               if(result[0].time_state6 == true){
+			                  
+			                  $("#time6").attr("disabled", true);
+			                  disabled_count +=1;
+			               }else{
+			                  
+			                  $("#time6").attr("disabled", false);
+			               }
+			               if(result[0].time_state7 == true){
+			                  
+			                  $("#time7").attr("disabled", true);
+			                  disabled_count +=1;
+			               }else{
+			                  
+			                  $("#time7").attr("disabled", false);
+			               }
+			               if(result[0].time_state8 == true){
+			                  
+			                  $("#time8").attr("disabled", true);
+			                  disabled_count +=1;
+			               }else{
+			                  
+			                  $("#time8").attr("disabled", false);
+			               }
+			               
+			               
+			               $("#disabled_count").val(disabled_count);
+			               
+			               
+			               if(disabled_count == 5){
+			                  alert("다른 날짜를 예약바랍니다.");
+			                  $("#time1").attr("disabled", true);
+			                  $("#time2").attr("disabled", true);
+			                  $("#time3").attr("disabled", true);
+			                  $("#time4").attr("disabled", true);
+			                  $("#time5").attr("disabled", true);
+			                  $("#time6").attr("disabled", true);
+			                  $("#time7").attr("disabled", true);
+			                  $("#time8").attr("disabled", true);
+			                  
+			               }else if(disabled_count == 4 || disabled_count == 3){
+			                  
+			                  
+			                  alert("1타임 이상 예약시 예약이 취소 될 수 있습니다.");
+			               }else if(disabled_count == 2){
+			                  
+			                  
+			                  alert("2타임 이상 예약시 예약이 취소 될 수 있습니다.");
+			               }else{
+			            	   alert("다른 날짜를 예약바랍니다.");
+			            	   
+			               }
+			            	   
+			               
+
+			               $("#timeList1").show();
+
+			               
+			               
+			            }else if(result_count == 2){
+			                
+			                     
+			               
+			               
+			                  if(result[0].time_state1 == true
+			                       && result[1].time_state1 == false){
+			                     disabled_count +=1;
+			                     $("#time1").attr("disabled", true);
+			                      
+			                  }else if(result[0].time_state1 == false
+			                           && result[1].time_state1 == true){
+			                     disabled_count +=1;
+			                     $("#time1").attr("disabled", true);
+			                     
+			                     
+			                  }else if(result[0].time_state1 == true
+			                           && result[1].time_state1 == true){
+			                     disabled_count +=1;
+			                     $("#time1").attr("disabled", true);
+			                     
+			                     
+			                  }else if(result[0].time_state1 == false
+			                           && result[1].time_state1 == false){
+			                     
+			                     $("#time1").attr("disabled", false);
+			                     
+			                     
+			                  }
+			                  if(result[0].time_state2 == true
+			                  && result[1].time_state2 == false){
+			                     disabled_count +=1;
+			                           $("#time2").attr("disabled", true);
+			                           
+			                        }else if(result[0].time_state2 == false
+			                                 && result[1].time_state2 == true){
+			                           disabled_count +=1;
+			                           $("#time2").attr("disabled", true);
+			                           
+			                           
+			                        }else if(result[0].time_state2 == true
+			                                 && result[1].time_state2 == true){
+			                           disabled_count +=1;
+			                           $("#time2").attr("disabled", true);
+			                           
+			                           
+			                        }else if(result[0].time_state2 == false
+			                                 && result[1].time_state2 == false){
+			                           
+			                           $("#time2").attr("disabled", false);
+			                           
+			                           
+			                        }
+			                  if(result[0].time_state3 == true
+			                             && result[1].time_state3 == false){
+			                     disabled_count +=1;
+			                           $("#time3").attr("disabled", true);
+			                           
+			                        }else if(result[0].time_state3 == false
+			                                 && result[1].time_state3 == true){
+			                           disabled_count +=1;
+			                           $("#time3").attr("disabled", true);
+			                           
+			                           
+			                        }else if(result[0].time_state3 == true
+			                                 && result[1].time_state3 == true){
+			                           disabled_count +=1;
+			                           $("#time3").attr("disabled", true);
+			                           
+			                           
+			                        }else if(result[0].time_state3 == false
+			                                 && result[1].time_state3 == false){
+			                           
+			                           $("#time3").attr("disabled", false);
+			                           
+			                           
+			                        }
+			                  if(result[0].time_state4 == true
+			                             && result[1].time_state4 == false){
+			                     disabled_count +=1;
+			                           $("#time4").attr("disabled", true);
+			                           
+			                        }else if(result[0].time_state4 == false
+			                                 && result[1].time_state4 == true){
+			                           disabled_count +=1;
+			                           $("#time4").attr("disabled", true);
+			                           
+			                           
+			                        }else if(result[0].time_state4 == true
+			                                 && result[1].time_state4 == true){
+			                           disabled_count +=1;
+			                           $("#time4").attr("disabled", true);
+			                           
+			                           
+			                        }else if(result[0].time_state4 == false
+			                                 && result[1].time_state4 == false){
+			                           
+			                           $("#time4").attr("disabled", false);
+			                           
+			                           
+			                        }
+			                  if(result[0].time_state5 == true
+			                             && result[1].time_state5 == false){
+			                     disabled_count +=1;
+			                           $("#time5").attr("disabled", true);
+			                           
+			                        }else if(result[0].time_state5 == false
+			                                 && result[1].time_state5 == true){
+			                           disabled_count +=1;
+			                           $("#time5").attr("disabled", true);
+			                           
+			                           
+			                        }else if(result[0].time_state5 == true
+			                                 && result[1].time_state5 == true){
+			                           disabled_count +=1;
+			                           $("#time5").attr("disabled", true);
+			                           
+			                           
+			                        }else if(result[0].time_state5 == false
+			                                 && result[1].time_state5 == false){
+			                           
+			                           $("#time5").attr("disabled", false);
+			                           
+			                           
+			                        }
+			                  if(result[0].time_state6 == true
+			                             && result[1].time_state6 == false){
+			                           disabled_count +=1;
+			                           $("#time6").attr("disabled", true);
+			                           
+			                        }else if(result[0].time_state6 == false
+			                                 && result[1].time_state6 == true){
+			                           disabled_count +=1;
+			                           $("#time6").attr("disabled", true);
+			                           
+			                           
+			                        }else if(result[0].time_state6 == true
+			                                 && result[1].time_state6 == true){
+			                           disabled_count +=1;
+			                           $("#time6").attr("disabled", true);
+			                           
+			                           
+			                        }else if(result[0].time_state6 == false
+			                                 && result[1].time_state6 == false){
+			                           
+			                           $("#time6").attr("disabled", false);
+			                           
+			                           
+			                        }
+			                  
+			                  if(result[0].time_state7 == true
+			                             && result[1].time_state7 == false){
+			                     disabled_count +=1;
+			                           $("#time7").attr("disabled", true);
+			                           
+			                        }else if(result[0].time_state7 == false
+			                                 && result[1].time_state7 == true){
+			                           disabled_count +=1;
+			                           $("#time7").attr("disabled", true);
+			                           
+			                           
+			                        }else if(result[0].time_state7 == true
+			                                 && result[1].time_state7 == true){
+			                           disabled_count +=1;
+			                           $("#time7").attr("disabled", true);
+			                           
+			                           
+			                        }else if(result[0].time_state7 == false
+			                                 && result[1].time_state7 == false){
+			                           
+			                           $("#time7").attr("disabled", false);
+			                           
+			                           
+			                        }
+			                  if(result[0].time_state8 == true
+			                             && result[1].time_state8 == false){
+			                     disabled_count +=1;
+			                           $("#time8").attr("disabled", true);
+			                           
+			                        }else if(result[0].time_state8 == false
+			                                 && result[1].time_state8 == true){
+			                           disabled_count +=1;
+			                           $("#time8").attr("disabled", true);
+			                           
+			                           
+			                        }else if(result[0].time_state8 == true
+			                                 && result[1].time_state8 == true){
+			                           disabled_count +=1;
+			                           $("#time8").attr("disabled", true);
+			                           
+			                           
+			                        }else if(result[0].time_state8 == false
+			                                 && result[1].time_state8 == false){
+			                           
+			                           $("#time8").attr("disabled", false);
+			                           
+			                           
+			                        }
+			                     
+			                     $("#disabled_count").val(disabled_count);
+			                     
+			                     if(disabled_count == 5){
+			                        
+			                        alert("다른 날짜를 예약바랍니다.");
+			                        $("#time1").attr("disabled", true);
+			                        $("#time2").attr("disabled", true);
+			                        $("#time3").attr("disabled", true);
+			                        $("#time4").attr("disabled", true);
+			                        $("#time5").attr("disabled", true);
+			                        $("#time6").attr("disabled", true);
+			                        $("#time7").attr("disabled", true);
+			                        $("#time8").attr("disabled", true);
+			                        
+			                        
+			                        
+			                     }else if(disabled_count == 4 || disabled_count == 3){
+			                        
+			                        
+			                        alert("1타임 이상 예약시 예약이 취소 될 수 있습니다.");
+			                     }else if(disabled_count == 2){
+			                        
+			                        
+			                        alert("2타임 이상 예약시 예약이 취소 될 수 있습니다.");
+			                     }else{
+			                    	 
+			                    	 
+			                    	 alert("다른 날짜를 예약바랍니다.");
+			                     }
+			                     
+			                     
+			                     
+			                     
+			                     
+			                     
+			                     $("#timeList1").show();
+
+			            
+			                  
+			                   
+			                  
+
+			               
+			            ////////////////////////////////////////   
+			            }else if(result_count == 3){
+			               
+			               alert("다른 날짜를 예약바랍니다.");
+			               
+			               $("#time1").attr("disabled", true);
+			               $("#time2").attr("disabled", true);
+			               $("#time3").attr("disabled", true);
+			               $("#time4").attr("disabled", true);
+			               $("#time5").attr("disabled", true);
+			               $("#time6").attr("disabled", true);
+			               $("#time7").attr("disabled", true);
+			               $("#time8").attr("disabled", true);
+			               
+			               $("#timeList1").show();
+
+			            }else{
+			               
+			               $("#time1").attr("disabled", false);
+			               $("#time2").attr("disabled", false);
+			               $("#time3").attr("disabled", false);
+			               $("#time4").attr("disabled", false);
+			               $("#time5").attr("disabled", false);
+			               $("#time6").attr("disabled", false);
+			               $("#time7").attr("disabled", false);
+			               $("#time8").attr("disabled", false);
+			               
+			               $("#timeList1").show();
+
+			               
+			               
+			            }
+			            
+			            
+			            
+			            
+			            
+			               }
+
+		  }
+		 	
+	   });
+	}
+}
+	
+}
+
+</script>
+<script type="text/javascript">
+var count = 0;
+var total_price = 0;
+
+	  if($("#reserv_date").val() != null){
+   
+   $(".btn_time").click(function() {
+		$(this).click(function(){ 
+		
+      var employee_price = $(".employee_price").val();
+     
+         if (count < 3) {
+
+         var input_div = $("<div>");
+         input_div.addClass("time_div");
+         
+         var div_serv = $("<div>");
+         div_serv.addClass("time_remove");
+         
+         var label1 = $("<label>예약시간</label>");
+         var label2 = $("<label>예약시간</label>");
+         var label3 = $("<label>예약시간</label>");
+         label1.addClass("form-label");
+         label2.addClass("form-label");
+         label3.addClass("form-label");
+         
+         var input1 = $("<input name='reserv_time1' id='reserv_time1'>");
+         var input2 = $("<input name='reserv_time2' id='reserv_time2'>");
+         var input3 = $("<input name='reserv_time3' id='reserv_time3'>");
+         
+         var btn_del = $("<input>");
+         var input_time = $(this).val();   
+         
+         input1.attr({"type" : "text","value" : input_time,"readonly" : "readonly"});
+         input1.addClass("form-control1 sctime1");
+         
+         input2.attr({"type" : "text","value" : input_time,"readonly" : "readonly"});
+         input2.addClass("form-control1 sctime2");
+         
+         input3.attr({"type" : "text","value" : input_time,"readonly" : "readonly"});
+         input3.addClass("form-control1 sctime3");
+         
+         btn_del.attr({ "type":"button", "value": "삭제", "align":"center"});
+         btn_del.addClass("btn_del");
+			
+         if($(this).val() != $("input[class='form-control1 sctime1']").val() 
+            && $(this).val() != $("input[class='form-control1 sctime2']").val() 
+            && $(this).val() != $("input[class='form-control1 sctime3']").val()){
+                         		   
+                                    if($("input[class='form-control1 sctime1']").val() == null){
+                                       input_div.append(div_serv);
+                                       div_serv.append(label1).append(input1).append(btn_del);
+                                       $("#rctime").append(input_div);
+                                       count+=1;
+                                       
+                                    
+									   var total_price = employee_price * count;
+
+                                   
+										  
+                               
+
+                                    }else if($("input[class='form-control1 sctime2']").val() == null){
+                                       
+                                       input_div.append(div_serv);
+                                       div_serv.append(label2).append(input2).append(btn_del);
+                                       $("#rctime").append(input_div);
+                                       count+=1;
+                                       
+                                    var total_price = employee_price * count;
+                                   	   
+                                       
+               
+                                    }else if($("input[class='form-control1 sctime3']").val() == null){
+                                       
+                                       input_div.append(div_serv);
+                                       div_serv.append(label3).append(input3).append(btn_del);
+                                       $("#rctime").append(input_div);
+                                       count+=1;
+										var total_price = employee_price * count;
+                                    	   
+                                    }
+            									
+            
+            
+       								 
+
+										 $(".total_price").val(total_price);
+										
+										
+            						   
+            						   
+            						  
+
+         }
+        
+			}
+     
+
+         
+         
+    });
+     });
+               // 삭제 버튼 클릭시 동작을 미리 설정
+   // javascript의 document 내장 객체에 이벤트를 등록해야함
+   $(document).on("click", ".btn_del", function(){
+
+
+             $(this).parents(".time_div").remove();
+				count-=1;
+				
+				var total_price = $(".total_price").val();
+				var employee_price = $(".employee_price").val();
+             var minus = total_price - employee_price;
+				$(".total_price").val(minus);	
+
+
+   });
+
+
+
+}else {
+	
+	
+	alert("날짜를 선택해주세요.");
+	
+}
+
+   
+   
+
+
+
+</script>
+
+<script type="text/javascript">
+
+   function Pay(memName,client_tel){
+	   var name = memName;
+	   var tel = client_tel;
+	   var frm = document.form1;
+	   var reserv_price = $("#reserv_price").val();
+	   var client_Id = $("#client_id").val();
+	   var reserv_date = $("#reserv_date").val();
+	   var reserv_time1 = $("#reserv_time1").val();
+	   var input_address = $("#sample6_detailAddress").val();
+
+		   
+	   var reserv_address = $("#sample6_postcode").val() + " " + $("#sample6_address").val() + " " +$("#sample6_extraAddress").val() +" " + $("#sample6_detailAddress").val();
+	   
+	   $("#reserv_address").val(reserv_address);
+		
+	   if (reserv_date.length == 0){
+		   $("#reserv_date").focus();
+		   Swal.fire({
+				  title: '날짜를 선택해주세요.',
+				  icon: 'warning',
+				  confirmButtonText: '확인'
+			   });
+	   
+	   }else if ($("input[class='form-control1 sctime1']").val() == null
+			   && $("input[class='form-control1 sctime2']").val() == null
+			   && $("input[class='form-control1 sctime3']").val() == null){
+			   $("#time1").focus();
+			   Swal.fire({
+					  title: '시간을 선택해주세요.',
+					  icon: 'warning',
+					  confirmButtonText: '확인'
+				   });
+		 
+		  
+	   }else if (input_address.length == 0){
+		   $("#sample6_detailAddress").focus();
+		   Swal.fire({
+				  title: '상세 주소를 입력해주세요.',
+				  icon: 'warning',
+				  confirmButtonText: '확인'
+			   });
+	   } else {
+		   
+	   IMP.init('imp28117295'); 
+	   
+	   Swal.fire({
+			  title: '결제를 진행하시겠습니까?',
+			  icon: 'question',
+			  showCancelButton: true,
+			  confirmButtonText: '결 제 하 기',
+			  cancelButtonText: '취 소'
+			}).then((result) => {
+				
+				if(result.isConfirmed){
+					IMP.request_pay({
+				           pg: 'kakao',
+				           pay_method: 'card',
+				           merchantuid: 'dt_code' + new Date().getTime(),				           
+				           name: "데이트 대행 서비스 예약",
+				           amount: '가격 : ' + reserv_price,
+				           buyer_name: '구매자 : ' + name,
+				           buyer_postcode: '연락처 : ' + tel,
+				           }, function (rsp) {
+
+				           if (rsp.success) {
+				           
+				           	const timestamp = rsp.paid_at; // 166688485
+							var pay_date = new Date(timestamp * 1000);
+
+							var pay_statename = "결제완료";
+							// 2. 결제 테이블 생성
+							$.ajax({ type: "post",
+										url: "/reservation/payWrite",
+										data: {"pay_clientid": $("#client_id").val(), "pay_price": rsp.paid_amount, "pay_date" : pay_date, "pay_statename" : pay_statename},
+										success: function(result){
+		
+												frm.submit();
+													
+								}
+						               
+						       
+							});
+								
+		
+				           
+				      
+				}else {
+			    	
+		               var msg = '결제에 실패하였습니다.';
+		               msg += '에러내용 : ' + rsp.error_msg;
+			    	
+			    }
+			});
+				}
+				
+				
+			});
+			
+		
+	   }
+	   
+   }
+
+</script>
+<script src="../reservation/reservation.js?v=3"></script>
+</html>

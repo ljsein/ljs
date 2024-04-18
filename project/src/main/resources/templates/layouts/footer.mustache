@@ -1,0 +1,71 @@
+<!-- footer -->
+ <style>
+ .member-footer {
+    text-align: center;
+    font-size: 12px;
+    margin-top: 20px;
+    height: 10px;
+}
+
+.member-footer div a:hover{
+    text-decoration: underline;
+    color:#2db400
+}
+
+.member-footer div a:after{
+    content:'|';
+    font-size: 10px;
+    color:#bbb;
+    margin-right: 5px;
+    margin-left: 7px;
+    /*살짝 내려가 있기 때문에 위로 올려주기 위해 transform 사용하기*/
+    display: inline-block;
+    transform: translateY(-1px);
+
+}
+
+.member-footer div a:last-child:after{
+    display: none;
+}
+
+.kakao1{
+	width: 50px;
+	height: 50px;
+	border-radius: 80%;
+	margin: 20px;
+}
+.on{
+	width: 50px;
+	height: 50px;
+	border-radius: 80%;
+}
+.on {
+		align-items: center;
+	transition: all 0.5s linear;
+	background-image: url("../image/footer_sns_03.png");
+	    background-size: cover;
+}
+.on:hover {
+	align-items: center;
+	background-image: url("../image/footer_sns_03_on.png");
+	    background-size: cover;
+}
+
+ </style>
+ 
+     		 <hr>
+        <div class="member-footer" >
+            <div>
+                <a href="/employee/manual">이용약관</a>
+                <a href="#none">개인정보처리방침</a>
+                <a href="#none">책임의 한계와 법적고지</a>
+                <a href="#none">회원정보 고객센터</a>
+            </div>
+            <span><a href="/main/mainIndex">wink</a></span>
+
+        </div>
+        <div class="kakao1" >
+                     <a href="https://open.kakao.com/o/gRj71n8f">
+                     <img class="on" /><br>
+                     </a> 
+        </div>
